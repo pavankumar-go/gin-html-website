@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0px;
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/static/assets/images/ifc.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.navigation {
+    width: 85%;
+    padding: 35px 0;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon {
+    width: 40px;
+}
+
+.navigation ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.navigation ul li a{
+    display: block;
+    font-family: 'Trebuchet MS';
+    color: #fff;
+    width: 50px;  /* set to not move all nav items on hover*/
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.navigation ul li a:hover{
+    font-weight: bolder;
+    text-decoration: none;
+    color: #ffb640;
+    transition: 0.2s;
+    text-align: center;
+}
+
+.main-content h1{
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    padding: 0 100px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Trebuchet MS';
+    color:#fff;
+    font-size: 3pc;
+    letter-spacing: 1px;
+}
+
+.main-content p{
+    width: 100%;
+    position: absolute;
+    top: 48%;
+    padding: 0 100px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Trebuchet MS';
+    color:#fff;
+    font-size: larger;
+    letter-spacing: 20px;
+}
+
+.main-footer-container {
+    width: 100%;
+    position: absolute;
+    bottom: 5%;
+    padding: 0 100px;
+    font-family: 'Trebuchet MS';
+    font-size: small;
+    color:rgba(255, 255, 255, 0.658);
+    font-weight: lighter;
+}
