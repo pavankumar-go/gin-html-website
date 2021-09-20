@@ -1,86 +1,167 @@
-*{
-    margin: 0;
-    padding: 0px;
+.background {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/static/assets/images/ifc.jpg);
 }
 
 .main {
+    width: 100%; 
+    min-height: 100vh;
+    margin: auto;
+    box-sizing: border-box;
+    padding-left: 5%;
+    padding-right: 5%;
+    overflow: hidden;
+ }
+
+.logo {
+    width:  40px;
+    height: 40px;
+    margin: 35px,0;
+}
+
+.menu {
+    width:  35px;
+    height: 35px;
+    cursor: pointer;
+    margin: 35px,0;
+    display: none;
+}
+
+.nav-bar {
     width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/static/assets/images/ifc.jpg);
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    align-items: center;
 }
 
 .navigation {
-    width: 85%;
-    padding: 35px 0;
-    display: flex;
-    margin: auto;
-    align-items: center;
+    flex: 1;
+    text-align: right;
     justify-content: space-between;
 }
 
-.icon {
-    width: 40px;
+.navigation ul {
+    overflow: hidden;
 }
 
 .navigation ul li {
+    width: 80px;
     list-style: none;
     display: inline-block;
-    margin: 0 20px;
+    margin-right: 30px;
+    margin-top: 10px;
+    justify-content: space-between;
 }
 
-.navigation ul li a{
-    display: block;
+
+.navigation ul li a {
+    font-size: 15px;
     font-family: 'Trebuchet MS';
     color: #fff;
-    width: 50px;  /* set to not move all nav items on hover*/
     text-decoration: none;
-    text-align: center;
-    border: 1px solid transparent;
+}
+
+.navigation ul li.active a{
+    font-weight: bolder;
+    color: #ffb640;
+    transition: 0.2s;
 }
 
 .navigation ul li a:hover{
     font-weight: bolder;
-    text-decoration: none;
     color: #ffb640;
     transition: 0.2s;
-    text-align: center;
 }
 
-.main-content h1{
-    width: 100%;
-    position: absolute;
-    top: 40%;
-    padding: 0 100px;
-    text-decoration: none;
-    text-transform: uppercase;
+.main-content-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 100px 0;
+}
+
+.main-content-col {
+     flex-basis: 40%;
+     position: relative;
+     margin-left: 8px,10px;
+     margin-top: 50px;
+     justify-content: space-between;
+}
+
+.main-content-col h1{
     font-family: 'Trebuchet MS';
     color:#fff;
-    font-size: 3pc;
+    font-size: 40px;
+    text-transform: uppercase;
     letter-spacing: 1px;
+    margin: 100px 0 10px;
 }
 
-.main-content p{
-    width: 100%;
-    position: absolute;
-    top: 48%;
-    padding: 0 100px;
-    text-decoration: none;
+.main-content-col p{
     text-transform: uppercase;
     font-family: 'Trebuchet MS';
     color:#fff;
-    font-size: larger;
+    font-size: 12px;
     letter-spacing: 20px;
 }
 
-.main-footer-container {
-    width: 100%;
-    position: absolute;
-    bottom: 5%;
-    padding: 0 100px;
-    font-family: 'Trebuchet MS';
-    font-size: small;
-    color:rgba(255, 255, 255, 0.658);
-    font-weight: lighter;
+@media only screen and (max-width:500px) {
+    .navigation ul {
+        /* background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)); */
+        width: 100%;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        z-index: 2;
+    }
+  
+    .navigation ul li{
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 40px;
+        margin-left: auto;
+    }
+
+    .navigation ul li a {
+        font-size: 20px;
+    }
+
+    .nav-bar {
+        align-items: center;
+        width: 90%;
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    #menuList {
+        overflow: hidden;
+        transition: 0.5s;
+    }
+
+    /* #menu-icon {
+        overflow: hidden;
+        transition: 1s;
+
+    } */
+
+    .main-content-col h1{ 
+        font-size: 30px;
+        margin: 150px 5px 10px;
+        text-align: center;
+        margin-left: 30px;
+    }
+
+    .main-content-col p{
+    font-size: 8px;
+    margin-left: 30px;
 }
+} 

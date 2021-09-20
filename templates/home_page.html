@@ -9,28 +9,43 @@
     <title>PKP</title>
 </head>
 
-<body>
-
+<body class=background>
     <div class="main">
-        <nav class="navigation">
-            <img class="icon" src="/static/assets/images/camera.png" />
-            <ul>
-                <li> <a href="#">Home</a></li>
-                <li> <a href="#">About</a></li>
-                <li> <a href="#">Blog</a></li>
-                <li> <a href="#">Places</a></li>
-                <li> <a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="main-content">
-            <h1>Pavan Kumar</h1>
-            <p>photography</p>
+        <div class="nav-bar">
+            <img class="logo" src="/static/assets/images/camera.png" />
+            <nav class="navigation">
+                <ul id="menuList">
+                    <li class="active"> <a href="#">Home</a></li>
+                    <li> <a href="#">About</a></li>
+                    <li> <a href="#">Blog</a></li>
+                    <li> <a href="#">Places</a></li>
+                    <li> <a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <img id="menu-icon" class="menu" src="/static/assets/images/menu.png" onclick="toggleMenu()" />
+        </div>
+        <div class="main-content-row">
+            <div class="main-content-col">
+                <h1>Pavan Kumar</h1>
+                <p>photography</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        var menulist = document.getElementById("menuList");
+        menulist.style.maxHeight = "0px"
+        function toggleMenu() {
+            if (menulist.style.maxHeight == "0px") {
+                document.getElementById("menu-icon").src = "/static/assets/images/menu-close.png"
+                menulist.style.maxHeight = "200px";
+            }
+            else {
+                document.getElementById("menu-icon").src = "/static/assets/images/menu.png"
+                menulist.style.maxHeight = "0px";
+            }
+        }
+    </script>
 </body>
-<footer class="main-footer">
-    <div class="main-footer-container">
-        <p>© 2021 Pavan Kumar</p>
-    </div>
-</footer>
+
 </html>
