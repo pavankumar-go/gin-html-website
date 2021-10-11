@@ -8,17 +8,17 @@ import (
 )
 
 func Seed(db *gorm.DB) {
-	log.Println("Seeding place table...")
 	places := []string{"Valley School", "Jogi Kere", "Turahalli"}
 
-	// var place models.Place
-	// tx := db.First(&place, models.Place{})
-	// if tx.RowsAffected == 0 {
-	for id, place := range places {
-		addPlace(place, id)
+	var place models.Place
+	tx := db.First(&place, models.Place{})
+	if tx.RowsAffected == 0 {
+		log.Println("Seeding place table...")
+		for id, place := range places {
+			addPlace(place, id)
+		}
+		log.Println("Seeding place table complete...")
 	}
-	log.Println("Seeding place table complete...")
-	// }
 }
 
 func addPlace(name string, id int) (*models.Place, error) {

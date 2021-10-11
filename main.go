@@ -13,7 +13,6 @@ import (
 )
 
 func main() {
-
 	sigchan := make(chan os.Signal, 1)
 	signal.Notify(sigchan, syscall.SIGINT, syscall.SIGTERM)
 
@@ -28,6 +27,5 @@ func main() {
 	database.Migrate(db)
 	database.Seed(db)
 	controller.GetPlaces()
-	controller.AddBird("blue malkoha")
 	router.StartServer(ctx)
 }

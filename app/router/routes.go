@@ -41,13 +41,14 @@ func StartServer(ctx context.Context) {
 	app.GET("/blogs", handler.Blogs())
 	app.GET("/places", handler.Places())
 
-
-	places:=app.Group("/places")
+	places := app.Group("/places")
 	places.GET("/bangalore", handler.Bangalore())
 	places.GET("/gaganachukki", handler.Gaganachukki())
 	places.GET("/valleySchool", handler.Ganeshgudi())
 	places.GET("/ganeshGudi", handler.ValleySchool())
 
+	api := app.Group("/v1")
+	api.POST("/upload/image", handler.AddBird())
 
 	// gin.SetMode()
 	server := &http.Server{

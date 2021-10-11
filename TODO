@@ -1,3 +1,7 @@
 1. blogs get thinned on phone desktop mode
-2. heading on home gets oushed to top left on phone desktop mode
-3. places get thinneds - makke it 1 cl in phone desktop mode
+2. heading on home gets pushed to top left on phone desktop mode
+3. places get thinned - make it 1 clmn in phone desktop mode
+4. make seed place creation via admin api
+   - add entry to DB 
+   - created folder with ID in /assets/images/places/X
+5. add auth to `/v1/` routes
