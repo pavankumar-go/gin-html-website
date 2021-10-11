@@ -25,9 +25,12 @@
 
 
     <div class="wrapper-grid">
-
-        <div class="container" onclick="blog()">
+        <!-- {{range .Blogs}} -->
+        <div class="container">
+            <!-- <p class="date">{{.BlogDate}}</p> -->
             <p class="date">25 Sep 2021</p>
+            <!-- <h2>{{.BlogTitle}}</h1> -->
+                <!-- {{.BlogContent}} -->
             <h2> My Blog 1</h1>
                 This is a great space to write long text about your company and your services. You can use this
                 space to go into a little more detail about your company. Talk about your team and what services you
@@ -80,6 +83,8 @@
                 makes you different from your competitors. Make your company stand out and show your visitors who
                 you are. Tip: Add your own image by double clicking the image and clicking Change Image
         </div>
+
+        {{end}}
     </div>
 
 </body>
