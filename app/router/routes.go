@@ -20,9 +20,13 @@ func StartServer(ctx context.Context) {
 	app.Use(middleware.CORS())
 
 	app.Static("static/css", "/Users/pavan/go/src/github.com/gin-html-website/static/css")
+	app.Static("scripts", "/Users/pavan/go/src/github.com/gin-html-website/scripts")
 	app.Static("static/assets/images", "/Users/pavan/go/src/github.com/gin-html-website/static/assets/images")
 	app.Static("static/assets/sounds", "/Users/pavan/go/src/github.com/gin-html-website/static/assets/sounds")
-	app.LoadHTMLGlob("templates/*.html")
+	app.LoadHTMLGlob("templates/*/*.html")
+	// app.LoadHTMLGlob("templates/*.html")
+	// app.LoadHTMLFiles("templates/*.html")
+	// app.LoadHTMLGlob("templates/places/*.html")
 
 	// prometheus handler
 	app.GET("/metrics", gin.WrapH(promhttp.Handler()))
@@ -32,6 +36,18 @@ func StartServer(ctx context.Context) {
 	})
 
 	app.GET("/", handler.HomePage())
+	app.GET("/home", handler.HomePage())
+	app.GET("/about", handler.About())
+	app.GET("/blogs", handler.Blogs())
+	app.GET("/places", handler.Places())
+
+
+	places:=app.Group("/places")
+	places.GET("/bangalore", handler.Bangalore())
+	places.GET("/gaganachukki", handler.Gaganachukki())
+	places.GET("/valleySchool", handler.Ganeshgudi())
+	places.GET("/ganeshGudi", handler.ValleySchool())
+
 
 	// gin.SetMode()
 	server := &http.Server{

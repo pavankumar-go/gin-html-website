@@ -1,1 +1,2 @@
-TEST_OUTPUT=`kafka-run-class kafka.tools.JmxTool --jmx-url service:jmx:rmi:///jndi/rmi://localhost:5555/jmxrmi --object-name kafka.server:type=KafkaServer,name=BrokerState --attributesValue --one-time true --wait 2>&1 | tail -1 | cut -d',' -f2` && [[ $TEST_OUTPUT == 3 ]]
+vendor/*
+static/assets/*

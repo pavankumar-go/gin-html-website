@@ -1,0 +1,186 @@
+* { 
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root {
+    --clr-main: #ffb640;
+
+    --font-size: 16px;
+    --border-radius: 0.2em;
+}
+
+body {
+    margin: 0;
+    font-family: 'Trebuchet MS';
+    font-size: var(--font-size);
+    background-color: black;
+    color: white;
+}
+
+.nav-bar {
+    position: fixed;
+    width: 100vw;
+    padding-top: 1em;
+    margin-top: 0em;
+    padding-bottom: 1em;
+    background-color: black;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    height: 3em;
+    padding: 0;
+    text-decoration: none;
+}
+
+.nav-bar ul li {
+    padding-right: 2em;
+    list-style: none;
+}
+
+.nav-bar ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+.nav-bar ul li.active a{
+    font-weight: bolder;
+    color: #ffb640;
+}
+
+.nav-bar ul li:first-child {
+    margin-right: auto;
+    margin-left: 2em;
+}
+
+.logo {
+    width:  40px;
+    height: 40px;
+}
+
+
+/* images */
+
+/* row */
+.wrapper-grid {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 1em;
+    margin-bottom: 0em;
+    margin-top: 4em;
+}
+
+/* Create four equal columns that sits next to each other */
+.container {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+    overflow: hidden;
+    margin: auto;
+}
+
+/* dim the places on hover */
+.container:hover {
+    filter: brightness(70%);
+    transition: all 0.5s ease;
+    cursor: zoom-in;
+}
+
+
+.container img{
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+  }
+
+
+/* 
+.container h3 { todo: bird name etc
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+} */
+
+
+
+/* zoom and slide */
+.image-view {
+    position: fixed;
+    top: 0em;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    width: 100%;
+    cursor: pointer;
+    display: none;
+}
+
+.image-box {
+    width: 70vw;
+    height: 80vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* FUCK THIS */
+    overflow-x: visible; 
+
+    display: none;
+}
+
+#prev-btn,
+#next-btn {
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+#prev-btn {
+    border-right: 30px solid white;
+    left: -50px; 
+}
+
+#next-btn {
+    border-left: 30px solid white;
+    right: -50px;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 810px) {
+    .container {
+      -ms-flex: 50%;
+      flex: 50%;
+      max-width: 50%;
+    }
+
+    .image-box {
+        height: 55vh;
+    }
+  }
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .container {
+      -ms-flex: 100%;
+      flex: 100%;
+      max-width: 100%;
+    }
+
+    .image-box {
+        height: 30vh;
+    }
+    
+  }

@@ -1,0 +1,110 @@
+* { 
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+
+:root {
+    --clr-main: #ffb640;
+
+    --font-size: 16px;
+    --border-radius: 0.2em;
+}
+
+.menu {
+    width:  35px;
+    height: 35px;
+    cursor: pointer;
+    margin: 35px,0;
+    display: none;
+}
+
+body {
+    margin: 0;
+    font-family: 'Trebuchet MS';
+    font-size: var(--font-size);
+    background-color: black;
+    color: white;
+}
+
+.nav-bar {
+    width: 100vw;
+    margin-top: 1em;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    height: 3em;
+    padding: 0;
+    text-decoration: none;
+}
+
+.nav-bar ul li {
+    padding-right: 2em;
+    list-style: none;
+}
+
+.nav-bar ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+.nav-bar ul li.active a{
+    font-weight: bolder;
+    color: #ffb640;
+}
+
+.nav-bar ul li:first-child {
+    margin-right: auto;
+    margin-left: 2em;
+}
+
+.logo {
+    width:  40px;
+    height: 40px;
+}
+
+
+
+/* blogs */
+
+
+.wrapper-grid {
+    display: grid;
+    margin-top: 2em;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 1.5em;
+    margin: 2em;
+}
+
+.container {
+    /* make this linear gradient & add background-image instead */
+    background-color: rgba(123, 122, 122, 0.234); 
+    border-radius: var(--border-radius);
+    padding: 1em;
+    border-top: 4px solid var(--clr-main);
+}
+
+.container h2 {
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+}
+
+.date {
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+}
+
+@media screen and (max-width:800px) {
+    .wrapper-grid {
+        grid-template-columns: 1fr;
+        height: 50%;
+    }
+}
