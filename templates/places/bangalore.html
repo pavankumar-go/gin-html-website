@@ -21,54 +21,11 @@
         </ul>
     </div>
     <div class="wrapper-grid">
-        <div class="container image">
-            <img src="/static/assets/images/1.jpg">
+        {{ range .Bird}}
+        <div class="container images">
+            <img src="/static/assets/images/{{.ID}}.jpg">
         </div>
-        <div class="container image">
-            <img src="/static/assets/images/2.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/1.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/2.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/1.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/2.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/1.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/2.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/3.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/4.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/2.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/3.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/4.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/2.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/3.jpg">
-        </div>
-        <div class="container image">
-            <img src="/static/assets/images/2.jpg">
-        </div>
+        {{end}}
     </div>
 
     <!-- zoom and slide -->

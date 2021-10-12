@@ -5,3 +5,4 @@
    - add entry to DB 
    - created folder with ID in /assets/images/places/X
 5. add auth to `/v1/` routes
+6. check todo in places.css

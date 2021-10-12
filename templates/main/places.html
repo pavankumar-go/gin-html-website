@@ -10,8 +10,7 @@
 </head>
 
 
-<body class=background>
-
+<body>
     <div class="nav-bar">
         <ul>
             <li><img class="logo" src="/static/assets/images/camera.png" /></li>
@@ -22,29 +21,14 @@
         </ul>
     </div>
 
-
-
     <div class="wrapper-grid">
-        <div class="container" id="bangalore" onclick="window.location.href='/places/bangalore'">
-            <!-- <a href="/places/bangalore" class="fill-div"></a> -->
-            <p class="date">25 Sep 2021</p>
-            <h2>Bangalore</h1>
+        {{ range .Place}}
+        <div class="container" id="{{.ID}}" onclick="window.location.href='{{.Handler}}'"
+            style="background-image: url(/static/assets/images/{{.ID}}.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;">
+            <p class="date">{{.LastUpdateDate}}</p>
+            <h2>{{.Name}}</h2>
         </div>
-        <div class="container" id="gaganachukki" onclick="window.location.href='/places/gaganachukki'">
-            <!-- <a href="/places/bangalore" class="fill-div"></a> -->
-            <p class="date"> 25 Sep 2021</p>
-            <h2>Gaganachukki</h1>
-        </div>
-        <div class="container" id="ganeshGudi" onclick="window.location.href='/places/ganeshGudi'">
-            <!-- <a href="/places/bangalore" class="fill-div"></a> -->
-            <p class="date"> 25 Sep 2021</p>
-            <h2>Ganesh Gudi</h1>
-        </div>
-        <div class="container" id="valleySchool" onclick="window.location.href='/places/valleySchool'">
-            <!-- <a href="/places/bangalore" class="fill-div"></a> -->
-            <p class="date"> 25 Sep 2021</p>
-            <h2>Valley School</h1>
-        </div>
+        {{end}}
     </div>
 
 </body>

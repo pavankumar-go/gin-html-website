@@ -98,14 +98,6 @@ body {
     height: 50vh;
 }
 
-/* dim the places on hover */
-/* causes image to pop up hence closing it for now - ref- sticky nav */
-.container:hover {
-    /* filter: brightness(70%); */
-    /* background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)); */
-    transition: all 0.5s ease;
-}
-
 .container h2 {
     margin-top: 0.2em;
     margin-bottom: 0.5em;
@@ -126,42 +118,18 @@ body {
 }
 
 
+/* TODO */
 
-
-/* BG images */
-
-#bangalore {
-    background-image: url(/static/assets/images/2.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-#gaganachukki {
-    background-image: url(/static/assets/images/2.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-#ganeshGudi{
-    background-image: url(/static/assets/images/3.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+/* dim the places on hover */
+/* causes image to pop up hence closing it for now - ref- sticky nav */
+.container:hover {
+    /* filter: brightness(70%); */
+    /* background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)); */
+    transition: all 0.5s ease;
 }
 
 
-#valleySchool{
-    background-image: url(/static/assets/images/4.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-
-
-.blah img {
+.SA img {
     -webkit-transition: all 1s ease; /* Safari and Chrome */
     -moz-transition: all 1s ease; /* Firefox */
     -ms-transition: all 1s ease; /* IE 9 */
@@ -169,10 +137,10 @@ body {
     transition: all 1s ease;
 }
 
-.blah:hover img {
-    -webkit-transform:scale(1.25); /* Safari and Chrome */
-    -moz-transform:scale(1.25); /* Firefox */
-    -ms-transform:scale(1.25); /* IE 9 */
-    -o-transform:scale(1.25); /* Opera */
-     transform:scale(1.25);
+.SA:hover {
+    -webkit-transform:scale(1.01); /* Safari and Chrome */
+    -moz-transform:scale(1.01); /* Firefox */
+    -ms-transform:scale(1.01); /* IE 9 */
+    -o-transform:scale(1.01); /* Opera */
+     transform:scale(1.01);
 }

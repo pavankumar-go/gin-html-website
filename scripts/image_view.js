@@ -1,4 +1,4 @@
-const enlarge = document.querySelectorAll('.image');
+const enlarge = document.querySelectorAll('.images');
 const allImages = document.querySelectorAll('.container');
 const imageView = document.querySelector('.image-view');
 const nextBtn = document.getElementById('next-btn');
