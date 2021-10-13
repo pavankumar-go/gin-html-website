@@ -4,8 +4,10 @@ import "gorm.io/gorm"
 
 type Place struct {
 	gorm.Model
-	Name  string
-	Birds []Bird
+	Name      string
+	ShortName string
+	BGImg     string
+	Birds     []Bird
 }
 
 type Bird struct {

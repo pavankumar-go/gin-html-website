@@ -1,21 +1,19 @@
-* { 
+* {
     box-sizing: border-box;
     overflow-x: hidden;
 }
 
-
 :root {
     --clr-main: #ffb640;
-
     --font-size: 16px;
     --border-radius: 0.2em;
 }
 
 .menu {
-    width:  35px;
+    width: 35px;
     height: 35px;
     cursor: pointer;
-    margin: 35px,0;
+    margin: 35px, 0;
     display: none;
 }
 
@@ -31,7 +29,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/static/assets/images/4.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/static/assets/images/main-bg/1.jpg);
 }
 
 .nav-bar {
@@ -55,12 +53,12 @@ body {
     list-style: none;
 }
 
-.nav-bar ul li a{
+.nav-bar ul li a {
     text-decoration: none;
     color: white;
 }
 
-.nav-bar ul li.active a{
+.nav-bar ul li.active a {
     font-weight: bolder;
     color: #ffb640;
 }
@@ -71,65 +69,59 @@ body {
 }
 
 .logo {
-    width:  40px;
+    width: 40px;
     height: 40px;
 }
 
-
 /* heading */
+
 .wrapper-grid {
     position: fixed;
-    margin:  15em 5em;
+    margin: 15em 5em;
     text-transform: uppercase;
     justify-content: center;
 }
 
-.wrapper-grid h1{
+.wrapper-grid h1 {
     margin-bottom: 0.1em;
     font-size: 2.5em;
 }
 
-.wrapper-grid p{
+.wrapper-grid p {
     margin-top: 0.1em;
     font-size: 1em;
     letter-spacing: 1em;
 }
 
-
-
-@media screen and (max-width:810px) and (min-width: 501px){
+@media screen and (max-width:810px) and (min-width: 501px) {
     .wrapper-grid {
         left: 5%;
         right: 5%;
         top: 60%;
         text-align: center;
     }
-
-    .wrapper-grid h1{
-        margin-right:0.5em;
+    .wrapper-grid h1 {
+        margin-right: 0.5em;
         font-size: 2em;
     }
-
-    .wrapper-grid p{
+    .wrapper-grid p {
         font-size: 0.9em;
         letter-spacing: 1.2em;
     }
 }
 
-@media screen and (max-width:510px) and (min-width: 376px){
+@media screen and (max-width:510px) and (min-width: 376px) {
     .wrapper-grid {
         left: 5%;
         right: 5%;
         top: 50%;
         text-align: center;
     }
-
-    .wrapper-grid h1{
-        margin-right:0.5em;
+    .wrapper-grid h1 {
+        margin-right: 0.5em;
         font-size: 1.5em;
     }
-
-    .wrapper-grid p{
+    .wrapper-grid p {
         font-size: 0.65em;
         letter-spacing: 1.1em;
     }
@@ -142,13 +134,11 @@ body {
         top: 50%;
         text-align: center;
     }
-
-    .wrapper-grid h1{
-        margin-right:0.5em;
+    .wrapper-grid h1 {
+        margin-right: 0.5em;
         font-size: 1.2em;
     }
-
-    .wrapper-grid p{
+    .wrapper-grid p {
         font-size: 0.5em;
         letter-spacing: 1.2em;
     }

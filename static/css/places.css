@@ -1,21 +1,19 @@
-* { 
+* {
     box-sizing: border-box;
     overflow-x: hidden;
 }
 
-
 :root {
     --clr-main: #ffb640;
-
     --font-size: 16px;
     --border-radius: 0.2em;
 }
 
 .menu {
-    width:  35px;
+    width: 35px;
     height: 35px;
     cursor: pointer;
-    margin: 35px,0;
+    margin: 35px, 0;
     display: none;
 }
 
@@ -29,7 +27,6 @@ body {
 
 .nav-bar {
     position: fixed;
-    /* position: sticky; */
     width: 100vw;
     padding-top: 1em;
     margin-top: 0em;
@@ -53,12 +50,12 @@ body {
     list-style: none;
 }
 
-.nav-bar ul li a{
+.nav-bar ul li a {
     text-decoration: none;
     color: white;
 }
 
-.nav-bar ul li.active a{
+.nav-bar ul li.active a {
     font-weight: bolder;
     color: #ffb640;
 }
@@ -69,19 +66,14 @@ body {
 }
 
 .logo {
-    width:  40px;
+    width: 40px;
     height: 40px;
 }
-
-
-
-/* blogs */
-
 
 .wrapper-grid {
     display: grid;
     margin-top: 2em;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 1.5em;
     margin: 2em;
     margin-top: 3em;
@@ -117,30 +109,38 @@ body {
     }
 }
 
-
 /* TODO */
 
 /* dim the places on hover */
+
 /* causes image to pop up hence closing it for now - ref- sticky nav */
+
 .container:hover {
     /* filter: brightness(70%); */
     /* background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)); */
     transition: all 0.5s ease;
 }
 
-
 .SA img {
-    -webkit-transition: all 1s ease; /* Safari and Chrome */
-    -moz-transition: all 1s ease; /* Firefox */
-    -ms-transition: all 1s ease; /* IE 9 */
-    -o-transition: all 1s ease; /* Opera */
+    -webkit-transition: all 1s ease;
+    /* Safari and Chrome */
+    -moz-transition: all 1s ease;
+    /* Firefox */
+    -ms-transition: all 1s ease;
+    /* IE 9 */
+    -o-transition: all 1s ease;
+    /* Opera */
     transition: all 1s ease;
 }
 
 .SA:hover {
-    -webkit-transform:scale(1.01); /* Safari and Chrome */
-    -moz-transform:scale(1.01); /* Firefox */
-    -ms-transform:scale(1.01); /* IE 9 */
-    -o-transform:scale(1.01); /* Opera */
-     transform:scale(1.01);
+    -webkit-transform: scale(1.01);
+    /* Safari and Chrome */
+    -moz-transform: scale(1.01);
+    /* Firefox */
+    -ms-transform: scale(1.01);
+    /* IE 9 */
+    -o-transform: scale(1.01);
+    /* Opera */
+    transform: scale(1.01);
 }

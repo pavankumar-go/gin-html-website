@@ -7,7 +7,6 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/gin-html-website/app/controller"
 	"github.com/gin-html-website/app/router"
 	"github.com/gin-html-website/database"
 )
@@ -25,7 +24,5 @@ func main() {
 
 	db := database.GetDBConnection()
 	database.Migrate(db)
-	database.Seed(db)
-	controller.GetPlaces()
 	router.StartServer(ctx)
 }

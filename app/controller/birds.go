@@ -28,7 +28,7 @@ func AddBird(name string, placeID uint, file *multipart.FileHeader) (*models.Bir
 	fileExtension := filepath.Ext(file.Filename)
 	birdID := bird.ID
 
-	dst, err := os.Create(fmt.Sprintf("static/assets/places/%d/%d%s", placeID, birdID, fileExtension))
+	dst, err := os.Create(fmt.Sprintf("static/assets/images/places/%d/%d%s", placeID, birdID, fileExtension))
 	if err != nil {
 		return bird, err
 	}
@@ -51,16 +51,10 @@ func AddBird(name string, placeID uint, file *multipart.FileHeader) (*models.Bir
 func GetBirds() (*[]models.Bird, error) {
 	db := database.GetDBConnection()
 	var birds []models.Bird
-	tx := db.Find(&birds)
-	// rowsAffected := tx.RowsAffected
-	err := tx.Error
+	err := db.Find(&birds).Error
 	if err != nil {
-		log.Println("error listing places..", err)
+		log.Println("error listing birds..", err)
 		return nil, err
-	}
-
-	for _, v := range birds {
-		log.Println(v.ID, "---", v.Name)
 	}
 
 	return &birds, nil
@@ -70,10 +64,10 @@ func RemoveBird(bID uint) (bool, error) {
 	db := database.GetDBConnection()
 	err := db.Unscoped().Delete(&models.Bird{}, bID).Error
 	if err != nil {
-		log.Println("error deleting image..", err)
+		log.Println("error deleting bird..", err)
 		return false, err
 	}
 
-	log.Println("image deleted")
+	log.Println("bird deleted")
 	return true, nil
 }

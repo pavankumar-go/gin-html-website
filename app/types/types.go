@@ -1,14 +1,6 @@
 package types
 
-type BirdsDTO struct {
-	ID   string
-	Name string
-}
-
-type PlaceDTO struct {
-	ID   string
-	Name string
-}
+import "github.com/gin-html-website/models"
 
 // blogs.html
 type Blogs struct {
@@ -23,22 +15,10 @@ type Blog struct {
 
 // places.html
 type Places struct {
-	Place []Place
+	Place []models.Place
 }
 
-type Place struct {
-	ID             string
-	Name           string
-	LastUpdateDate string
-	Handler        string
-}
-
-// birds.html
+// birds/place.html
 type Birds struct {
-	Bird []Bird
-}
-
-type Bird struct {
-	ID   string
-	Name string
+	Bird []models.Bird
 }

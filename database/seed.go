@@ -1,37 +1,30 @@
 package database
 
-import (
-	"log"
+// func Seed(db *gorm.DB) {
+// 	places := []string{"Valley School", "Jogi Kere", "Turahalli"}
 
-	"github.com/gin-html-website/models"
-	"gorm.io/gorm"
-)
+// 	var place models.Place
+// 	tx := db.First(&place, models.Place{})
+// 	if tx.RowsAffected == 0 {
+// 		log.Println("Seeding place table...")
+// 		for id, place := range places {
+// 			addPlace(place, id)
+// 		}
+// 		log.Println("Seeding place table complete...")
+// 	}
+// }
 
-func Seed(db *gorm.DB) {
-	places := []string{"Valley School", "Jogi Kere", "Turahalli"}
+// func addPlace(name string, id int) (*models.Place, error) {
+// 	log.Println(name, "---", id)
+// 	var place models.Place
+// 	db := GetDBConnection()
+// 	data := &models.Place{
+// 		Name: name,
+// 	}
 
-	var place models.Place
-	tx := db.First(&place, models.Place{})
-	if tx.RowsAffected == 0 {
-		log.Println("Seeding place table...")
-		for id, place := range places {
-			addPlace(place, id)
-		}
-		log.Println("Seeding place table complete...")
-	}
-}
-
-func addPlace(name string, id int) (*models.Place, error) {
-	log.Println(name, "---", id)
-	var place models.Place
-	db := GetDBConnection()
-	data := &models.Place{
-		Name: name,
-	}
-
-	err := db.Create(data).Error
-	if err != nil {
-		log.Fatalln(err)
-	}
-	return &place, nil
-}
+// 	err := db.Create(data).Error
+// 	if err != nil {
+// 		log.Fatalln(err)
+// 	}
+// 	return &place, nil
+// }

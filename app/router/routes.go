@@ -8,6 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-html-website/app/handler"
+	"github.com/gin-html-website/app/handler/api"
 	"github.com/gin-html-website/app/middleware"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
@@ -42,13 +43,14 @@ func StartServer(ctx context.Context) {
 	app.GET("/places", handler.Places())
 
 	places := app.Group("/places")
-	places.GET("/bangalore", handler.Bangalore())
+	places.GET("/blr", handler.Bangalore())
 	places.GET("/gaganachukki", handler.Gaganachukki())
 	places.GET("/valleySchool", handler.Ganeshgudi())
 	places.GET("/ganeshGudi", handler.ValleySchool())
 
-	api := app.Group("/v1")
-	api.POST("/upload/image", handler.AddBird())
+	adminAPI := app.Group("/v1")
+	adminAPI.POST("/upload/bird", api.AddBird())
+	adminAPI.POST("/create/place", api.AddPlace())
 
 	// gin.SetMode()
 	server := &http.Server{

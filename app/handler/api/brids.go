@@ -1,4 +1,4 @@
-package handler
+package api
 
 import (
 	"log"
@@ -48,20 +48,20 @@ func AddBird() gin.HandlerFunc {
 			return
 		}
 
-		log.Println("saving image: ", birdName, "with place ID", placeID)
+		log.Println("saving bird image: ", birdName, "with place ID", placeID)
 		bird, cErr := controller.AddBird(birdName, uint(placeID), fileHeader)
 		if cErr != nil {
-			log.Println("recieved non-db related error: bird is added to DB but image might not be saved, cleanup in progress: ", err)
+			log.Println("error occured while adding bird: cleanup in progress: ", err)
 			deletedBird, err := controller.RemoveBird(bird.ID)
 			if err != nil {
 				c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
-					"message": "request was successful, cleanup failed too",
+					"message": "request was unsuccessful, cleanup failed too",
 				})
 				return
 			}
 			log.Println("cleanup completed..", deletedBird)
 
-			log.Println("image saving had failed: ", cErr)
+			log.Println("bird image saving had failed: ", cErr)
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 				"message": cErr.Error(),
 			})
