@@ -68,19 +68,20 @@ body {
 
 .wrapper-grid {
     display: grid;
-    margin-top: 2em;
     grid-template-columns: 1fr;
-    grid-gap: 1.5em;
 }
 
 .container {
     /* make this linear gradient & add background-image instead */
-    background-color: rgba(123, 122, 122, 0.234);
+    /* background-color: rgba(123, 122, 122, 0.234); */
+    background: url(/static/assets/images/places/1/2.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
     border-radius: var(--border-radius);
     border-top: 4px solid var(--clr-main);
-    height: 100vh;
-    margin: 2em;
-    padding: 2em;
+    height: 50vh;
+    margin: 5em;
+    padding: 3em;
 }
 
 .container h1 {
@@ -101,9 +102,23 @@ body {
     margin-bottom: 0.5em;
 }
 
-@media screen and (max-width:500px) {
+@media screen and (max-width:412px) {
     .container {
         padding: 1em;
-        margin-top: 1em;
+        margin-top: 0em;
+        text-align:justify;
+        margin: 2em;
+    }
+
+    .container h1{
+        font-size: 1.5em;
+    }
+
+    .container p{
+        font-size: 1em;
+    }
+
+    .container p1{
+        font-size: 0.95em;
     }
 }
