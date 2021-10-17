@@ -25,9 +25,6 @@ func StartServer(ctx context.Context) {
 	app.Static("static/assets/images", "/Users/pavan/go/src/github.com/gin-html-website/static/assets/images")
 	app.Static("static/assets/sounds", "/Users/pavan/go/src/github.com/gin-html-website/static/assets/sounds")
 	app.LoadHTMLGlob("templates/*/*.html")
-	// app.LoadHTMLGlob("templates/*.html")
-	// app.LoadHTMLFiles("templates/*.html")
-	// app.LoadHTMLGlob("templates/places/*.html")
 
 	// prometheus handler
 	app.GET("/metrics", gin.WrapH(promhttp.Handler()))
@@ -49,8 +46,15 @@ func StartServer(ctx context.Context) {
 	places.GET("/ganeshGudi", handler.ValleySchool())
 
 	adminAPI := app.Group("/v1")
-	adminAPI.POST("/upload/bird", api.AddBird())
-	adminAPI.POST("/create/place", api.AddPlace())
+	adminAPI.POST("/bird/upload", api.AddBird())
+	// adminAPI.DELETE("/bird/:birdId/place/:placeId", api.AddPlace())
+
+	adminAPI.POST("/place/create", api.AddPlace())
+	adminAPI.DELETE("/place/:id", api.DeletePlace())
+	adminAPI.PATCH("/place/:id", api.UpdatePlace())
+
+	// 404 route
+	// app.NoRoute(app.o0O())
 
 	// gin.SetMode()
 	server := &http.Server{

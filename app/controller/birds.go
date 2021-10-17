@@ -60,6 +60,10 @@ func GetBirds() (*[]models.Bird, error) {
 	return &birds, nil
 }
 
+// TODO:
+// 1. need to consider the re-ordering of image names `1.jpg 3.jpg ...`
+// 2. OR find better way to scroll images than from index - current scroll 0,1,3 -> should work if 1,4,6,7,8,11
+
 func RemoveBird(bID uint) (bool, error) {
 	db := database.GetDBConnection()
 	err := db.Unscoped().Delete(&models.Bird{}, bID).Error

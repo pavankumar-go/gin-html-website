@@ -73,8 +73,9 @@ body {
 .wrapper-grid {
     display: grid;
     margin-top: 2em;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1.5em;
+    grid-template-columns: repeat(1, 1fr);
+    /* grid-template-rows: auto; */
+    grid-gap: 1em;
     margin: 2em;
     margin-top: 3em;
 }
@@ -87,7 +88,7 @@ body {
     border-radius: var(--border-radius);
     padding: 1em;
     border-top: 4px solid var(--clr-main);
-    height: 50vh;
+    height: 100vh;
 }
 
 .container h2 {
@@ -107,6 +108,9 @@ body {
     .wrapper-grid {
         grid-template-columns: 1fr;
     }
+    /* .container h2 {
+        font-size: 15em;
+    } */
 }
 
 /* TODO */

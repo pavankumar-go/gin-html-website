@@ -3,6 +3,7 @@ package api
 import (
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-html-website/app/controller"
@@ -63,5 +64,67 @@ func AddPlace() gin.HandlerFunc {
 
 		log.Printf("place created with ID: %d and background is saved..", place.ID)
 		c.JSON(200, "place created and background image upload complete")
+	}
+}
+
+func DeletePlace() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		placeIDStr := c.Param("id")
+		placeID, err := strconv.Atoi(placeIDStr)
+		if err != nil {
+			log.Println("failed to strconv.Atoi : ", err)
+			c.AbortWithStatusJSON(400, gin.H{
+				"message": "invalid id",
+			})
+			return
+		}
+
+		log.Println("deleting place: ", placeID)
+		ok, err := controller.RemovePlace(uint(placeID))
+		if err != nil || !ok {
+			log.Println("error deleting place: ", err)
+			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+				"message": "failed to delete place: " + err.Error(),
+			})
+			return
+		}
+		c.JSON(200, "place deleted successfully..")
+	}
+}
+
+func UpdatePlace() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+		placeIDStr := c.Param("id")
+		placeID, err := strconv.Atoi(placeIDStr)
+		if err != nil {
+			log.Println("failed to strconv.Atoi : ", err)
+			c.AbortWithStatusJSON(400, gin.H{
+				"message": "invalid id",
+			})
+			return
+		}
+
+		fileHeader, err := c.FormFile("image")
+		if err != nil || fileHeader == nil {
+			log.Println("no image(s) attached")
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": "No image attached",
+			})
+			return
+		}
+
+		log.Println("updating place and saving new background image for place ID: ", placeID)
+		ok, err := controller.UpdatePlace(uint(placeID), fileHeader)
+		if err != nil || !ok {
+			log.Println("error while updating place and saving new background image: ", err)
+			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+				"message": "failed to update place: " + err.Error(),
+			})
+			return
+		}
+
+		log.Println("place updated and new background is saved..", placeID)
+		c.JSON(200, "place updated and new background image upload complete")
 	}
 }

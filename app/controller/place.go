@@ -10,6 +10,7 @@ import (
 
 	"github.com/gin-html-website/database"
 	"github.com/gin-html-website/models"
+	"gorm.io/gorm"
 )
 
 func AddPlace(name, shortName string, file *multipart.FileHeader) (*models.Place, error) {
@@ -77,14 +78,62 @@ func GetPlaces() (*[]models.Place, error) {
 	return &places, nil
 }
 
-func RemovePlace(pID uint) (bool, error) {
+func RemovePlace(placeID uint) (bool, error) {
 	db := database.GetDBConnection()
-	err := db.Unscoped().Delete(&models.Place{}, pID).Error
+	err := db.Unscoped().Delete(&models.Place{}, placeID).Error
 	if err != nil {
 		log.Println("error deleting place..", err)
 		return false, err
 	}
 
-	log.Println("place deleted")
+	pathToDel := fmt.Sprintf("static/assets/images/places/%d", placeID)
+	err = os.RemoveAll(pathToDel)
+	if err != nil {
+		log.Printf("error deleting place directory %s: %v", pathToDel, err)
+		return false, err
+	}
+
+	log.Println("permanently deleted place: ", placeID)
+	return true, nil
+}
+
+func UpdatePlace(placeID uint, file *multipart.FileHeader) (bool, error) {
+	db := database.GetDBConnection()
+
+	fileExtension := filepath.Ext(file.Filename)
+
+	place := &models.Place{
+		Model: gorm.Model{
+			ID: placeID,
+		},
+	}
+
+	err := db.First(&place).Error
+	log.Println("DB error:", err)
+	if err != nil {
+		log.Println("error updating place for image background path: ", err)
+		return false, err
+	}
+
+	dst, err := os.Create(fmt.Sprintf("static/assets/images/places/%d/bg/%d-place-bg%s", placeID, placeID, fileExtension))
+	if err != nil {
+		log.Println("error saving new background image..", err)
+		return false, err
+	}
+
+	defer dst.Close()
+
+	image, err := file.Open()
+	if err != nil {
+		log.Println("failed to open image: ", err)
+		return false, err
+	}
+
+	_, err = io.Copy(dst, image)
+	if err != nil {
+		log.Println("error saving attachment for new place image background: ", err)
+		return false, err
+	}
+
 	return true, nil
 }

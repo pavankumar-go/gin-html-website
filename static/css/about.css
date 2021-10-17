@@ -74,12 +74,13 @@ body {
 .container {
     /* make this linear gradient & add background-image instead */
     /* background-color: rgba(123, 122, 122, 0.234); */
-    background: url(/static/assets/images/places/1/2.jpg);
+    background: url(/static/assets/images/bg-1.jpeg);
     background-repeat: no-repeat;
     background-size:cover;
+    background-size: contain;
     border-radius: var(--border-radius);
     border-top: 4px solid var(--clr-main);
-    height: 50vh;
+    height: 100vh;
     margin: 5em;
     padding: 3em;
 }

@@ -70,6 +70,7 @@ body {
     column-count: 4;
     padding: 20px;
     column-gap: 5px;
+    overflow: hidden;
 }
 
 /* Create four equal columns that sits next to each other */
@@ -168,16 +169,5 @@ body {
 @media screen and (max-width: 412px) {
     .wrapper-grid {
         column-count: 1;
-    }
-
-    .image-box {
-    }
-    
-    .image-box img {
-        width: 100%;
-        height: auto;
-        position: relative;
-        text-align: center;
-        object-fit: contain;
     }
 }

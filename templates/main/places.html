@@ -25,7 +25,7 @@
         {{ range .Place}}
         <div class="container" id="{{.ID}}" onclick="window.location.href='/places/{{.ShortName}}'"
             style="background-image: url(/static/assets/images/places{{.BGImg}}); background-position: center; background-repeat: no-repeat; background-size: cover;">
-            <p class="date">{{.UpdatedAt}}</p>
+            <p class="date">{{.UpdatedAt.Format "2006 Jan 02" }}</p>
             <h2>{{.Name}}</h2>
         </div>
         {{end}}

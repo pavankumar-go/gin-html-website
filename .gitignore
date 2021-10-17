@@ -1,6 +1,0 @@
-vendor/*
-static/assets/*
-*.db
-tmp*
-flow
-**.DS_Store**
