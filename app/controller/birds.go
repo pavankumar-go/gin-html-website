@@ -2,7 +2,7 @@ package controller
 
 import (
 	"fmt"
-	"io"
+	"image/jpeg"
 	"log"
 	"mime/multipart"
 	"os"
@@ -34,12 +34,22 @@ func AddBird(name string, placeID uint, file *multipart.FileHeader) (*models.Bir
 	}
 	defer dst.Close()
 
-	image, err := file.Open()
+	f, err := file.Open()
 	if err != nil {
 		return bird, err
 	}
 
-	_, err = io.Copy(dst, image)
+	image, err := jpeg.Decode(f)
+	if err != nil {
+		log.Println("failed to decode image: ", err)
+		return bird, err
+	}
+
+	opts := &jpeg.Options{
+		Quality: 70,
+	}
+	err = jpeg.Encode(dst, image, opts)
+	// _, err = io.Copy(dst, image)
 	if err != nil {
 		log.Println("error saving attachment image: ", err)
 		return bird, err
