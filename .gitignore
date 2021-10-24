@@ -1,0 +1,4 @@
+tmp/*
+gin-*
+vendor/*
+static/assets/images/places/*

@@ -47,8 +47,8 @@ func StartServer(ctx context.Context) {
 
 	adminAPI := app.Group("/v1")
 	adminAPI.POST("/bird/upload", api.AddBird())
-	// adminAPI.DELETE("/bird/:birdId/place/:placeId", api.AddPlace())
-
+	// adminAPI.DELETE("/bird/:birdId/place/:placeId", api.AddPlace()) - refer handler comments frontend.go
+  
 	adminAPI.POST("/place/create", api.AddPlace())
 	adminAPI.DELETE("/place/:id", api.DeletePlace())
 	adminAPI.PATCH("/place/:id", api.UpdatePlace())

@@ -30,6 +30,15 @@ func AddBird() gin.HandlerFunc {
 			return
 		}
 
+		qualityStr, ok := c.GetPostForm("quality")
+		if !ok {
+			log.Println("quality is missing")
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": "missing quality value",
+			})
+			return
+		}
+
 		fileHeader, err := c.FormFile("image")
 		if err != nil || fileHeader == nil {
 			log.Println("no image(s) attached")
@@ -48,8 +57,17 @@ func AddBird() gin.HandlerFunc {
 			return
 		}
 
+		quality, err := strconv.Atoi(qualityStr)
+		if err != nil {
+			log.Println("str conv failed: ", err)
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": "Error converting quality",
+			})
+			return
+		}
+
 		log.Println("saving bird image: ", birdName, "with place ID", placeID)
-		bird, cErr := controller.AddBird(birdName, uint(placeID), fileHeader)
+		bird, cErr := controller.AddBird(birdName, uint(placeID), fileHeader, quality)
 		if cErr != nil {
 			log.Println("error occured while adding bird: cleanup in progress: ", err)
 			deletedBird, err := controller.RemoveBird(bird.ID)

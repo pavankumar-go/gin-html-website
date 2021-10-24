@@ -12,10 +12,11 @@ import (
 	"github.com/gin-html-website/models"
 )
 
-func AddBird(name string, placeID uint, file *multipart.FileHeader) (*models.Bird, error) {
+func AddBird(name string, placeID uint, file *multipart.FileHeader, quality int) (*models.Bird, error) {
 	bird := &models.Bird{
 		Name:    name,
 		PlaceID: placeID,
+		Quality: quality,
 	}
 
 	db := database.GetDBConnection()
@@ -45,13 +46,13 @@ func AddBird(name string, placeID uint, file *multipart.FileHeader) (*models.Bir
 		return bird, err
 	}
 
-	opts := &jpeg.Options{
-		Quality: 70,
+	imgOpts := &jpeg.Options{
+		Quality: quality,
 	}
-	err = jpeg.Encode(dst, image, opts)
-	// _, err = io.Copy(dst, image)
+
+	err = jpeg.Encode(dst, image, imgOpts)
 	if err != nil {
-		log.Println("error saving attachment image: ", err)
+		log.Println("error saving image : ", err)
 		return bird, err
 	}
 

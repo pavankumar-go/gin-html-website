@@ -14,4 +14,5 @@ type Bird struct {
 	gorm.Model
 	Name    string
 	PlaceID uint
+	Quality int
 }
