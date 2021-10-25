@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; exception */
 }
 
 :root {
@@ -75,7 +75,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-x: visible;
 }
 
 .wrapper .content img {

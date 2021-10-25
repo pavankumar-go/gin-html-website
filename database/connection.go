@@ -10,7 +10,7 @@ import (
 var DB *gorm.DB
 
 func initDB() {
-	db, err := gorm.Open(sqlite.Open("gorm.db?_foreign_keys=on"), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open("website.db?_foreign_keys=on"), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to open sql connection...\n ", err.Error())
 	}
