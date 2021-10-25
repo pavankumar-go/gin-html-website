@@ -1,4 +1,6 @@
-tmp/*
-gin-*
+*.db
+TODO
 vendor/*
 static/assets/images/places/*
+tmp/*
+gin-html-website
