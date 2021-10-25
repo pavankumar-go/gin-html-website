@@ -14,16 +14,15 @@ import (
 )
 
 // StartServer registers routes and starts server
-func StartServer(ctx context.Context) {
-
+func StartServer(ctx context.Context, appPath string) {
 	app := gin.New()
 	app.Use(gin.Logger())
 	app.Use(middleware.CORS())
 
-	app.Static("static/css", "/Users/pavan/go/src/github.com/gin-html-website/static/css")
-	app.Static("scripts", "/Users/pavan/go/src/github.com/gin-html-website/scripts")
-	app.Static("static/assets/images", "/Users/pavan/go/src/github.com/gin-html-website/static/assets/images")
-	app.Static("static/assets/sounds", "/Users/pavan/go/src/github.com/gin-html-website/static/assets/sounds")
+	app.Static("static/css", appPath+"/static/css")
+	app.Static("scripts", appPath+"/scripts")
+	app.Static("static/assets/images", appPath+"/static/assets/images")
+	app.Static("static/assets/sounds", appPath+"/static/assets/sounds")
 	app.LoadHTMLGlob("templates/*/*.html")
 
 	// prometheus handler
@@ -48,7 +47,7 @@ func StartServer(ctx context.Context) {
 	adminAPI := app.Group("/v1")
 	adminAPI.POST("/bird/upload", api.AddBird())
 	// adminAPI.DELETE("/bird/:birdId/place/:placeId", api.AddPlace()) - refer handler comments frontend.go
-  
+
 	adminAPI.POST("/place/create", api.AddPlace())
 	adminAPI.DELETE("/place/:id", api.DeletePlace())
 	adminAPI.PATCH("/place/:id", api.UpdatePlace())
