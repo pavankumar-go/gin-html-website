@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root {
+    --clr-main: #ffb640;
+    --font-size: 16px;
+    --border-radius: 0.2em;
+}
+
+body {
+    margin: 0;
+    font-family: 'Trebuchet MS';
+    font-size: var(--font-size);
+    background-color: black;
+}
+
+.nav-bar {
+    position: fixed;
+    width: 100vw;
+    padding-top: 1em;
+    margin-top: 0em;
+    padding-bottom: 1em;
+    background-color: black;
+    z-index: 1;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    height: 3em;
+    padding: 0;
+    text-decoration: none;
+}
+
+.nav-bar ul li {
+    padding-right: 2em;
+    list-style: none;
+}
+
+.nav-bar ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-bar ul li.active a {
+    font-weight: bolder;
+    color: #ffb640;
+}
+
+.nav-bar ul li:first-child {
+    margin-right: auto;
+    margin-left: 2em;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+/* images */
+
+.wrapper-grid {
+    margin-top: 4em;
+    position: relative;
+    column-count: 4;
+    padding: 20px;
+    column-gap: 5px;
+    overflow: hidden;
+}
+
+/* Create four equal columns that sits next to each other */
+
+.container {
+    display: inline;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.container img {
+    transition: 0.25s ease-in-out;
+    width: 100%;
+    /* height: 100%; */
+}
+
+/* dim the places on hover */
+
+.container:hover {
+    filter: brightness(70%);
+    transition: all 0.5s ease;
+    cursor: zoom-in;
+}
+
+/* 
+.container h3 { todo: bird name etc
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+} */
+
+/* zoom and slide */
+
+#image-view {
+    position: fixed;
+    top: 0em;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 1.8), rgba(0, 0, 0, 1.5));
+    width: 100%;
+    cursor: pointer;
+    display: none;
+}
+
+.image-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-x: visible;
+    display: none;
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: center;
+    object-fit: contain;
+}
+
+.arrow {
+    width: 25px;
+    height: 25px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    position: fixed;
+    top: 50%;
+    cursor: pointer;
+}
+
+.arrow-right {
+    transform: rotate(45deg);
+    right: 2%;
+}
+
+.arrow-left {
+    transform: rotate(-135deg);
+    left: 2%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+
+@media screen and (max-width: 820px) and (min-width: 768px) {
+    .wrapper-grid {
+        column-count: 3;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .wrapper-grid {
+        column-count: 1;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 412px) {
+    .wrapper-grid {
+        column-count: 1;
+    }
+}

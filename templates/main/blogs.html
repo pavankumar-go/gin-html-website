@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/blogs.css">
+    <title>PKP</title>
+</head>
+
+
+<body class=background>
+
+    <div class="nav-bar">
+        <ul>
+            <li><img class="logo" src="/static/assets/images/camera.png" /></li>
+            <li> <a href="/home">Home</a></li>
+            <!-- <li class="active"> <a href="/blogs">Blogs</a></li> -->
+            <li> <a href="/places">Gallery</a></li>
+            <li> <a href="/about">About</a></li>
+        </ul>
+    </div>
+
+
+    <div class="wrapper-grid">
+        {{range .Blog }}
+        <div class="container">
+            <p class="date">{{.Date}}</p>
+            <h2>{{.Title}}</h2>
+            {{.Content}}
+        </div>
+        {{end}}
+    </div>
+</body>
+
+</html>

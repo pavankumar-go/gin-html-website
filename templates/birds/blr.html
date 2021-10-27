@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- THIS should correspond to models.shortName -->
+    <!-- too complicated to remember - FIX it later -->
+    <link rel="stylesheet" href="/static/css/places/blr.css">
+    <title>PKP</title>
+</head>
+
+
+<body id=main-body>
+    <div class="nav-bar">
+        <ul>
+            <li><img class="logo" src="/static/assets/images/camera.png" /></li>
+            <li> <a href="/home">Home</a></li>
+            <!-- <li> <a href="/blogs">Blogs</a></li> -->
+            <li class="active"> <a href="/places">Gallery</a></li>
+            <li> <a href="/about">About</a></li>
+        </ul>
+    </div>
+    <div class="wrapper-grid">
+        {{ range .Bird}}
+        <div class="container images">
+            <img src="/static/assets/images/places/{{.PlaceID}}/{{.ID}}.jpg">
+            <!-- <h1>{{.Name}}</h1> -->
+        </div>
+        {{end}}
+    </div>
+
+    <!-- zoom and slide -->
+    <div id="image-view">
+        <div class="arrow arrow-left" id="prev-btn"></div>
+        <div class="arrow arrow-right" id="next-btn"></div>
+    </div>
+
+    <div id="img-box" class="image-box">
+        <img id="image-tag"></img>
+    </div>
+
+    <script src="/scripts/image_view.js" async defer></script>
+</body>
+
+</html>

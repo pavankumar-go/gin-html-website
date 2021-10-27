@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    /* overflow: hidden; exception */
+}
+
+:root {
+    --clr-main: #ffb640;
+    --font-size: 16px;
+    --border-radius: 0.2em;
+}
+
+.menu {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin: 35px, 0;
+    display: none;
+}
+
+body {
+    margin: 0;
+    font-family: 'Trebuchet MS';
+    font-size: var(--font-size);
+    background-color: black;
+    color: white;
+}
+
+.nav-bar {
+    width: 100vw;
+    margin-top: 1em;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    height: 3em;
+    padding: 0;
+    text-decoration: none;
+}
+
+.nav-bar ul li {
+    padding-right: 2em;
+    list-style: none;
+}
+
+.nav-bar ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-bar ul li.active a {
+    font-weight: bolder;
+    color: #ffb640;
+}
+
+.nav-bar ul li:first-child {
+    margin-right: auto;
+    margin-left: 2em;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+/* about me */
+
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper .content img {
+    height: auto;
+    width: 500px;
+    max-width: 100%;
+}
+
+.about {
+    width: 600px;
+    padding: 0 10px;
+    max-width: 100%;
+}
+
+.content {
+    width: 1280px;
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.about h1 {
+    color: var(--clr-main);
+    font-size: 1.7em;
+}
+
+.about p {
+    letter-spacing: 1px;
+}
+
+.about p1 {
+    letter-spacing: 1px;
+}
+
+@media screen and (max-width: 1180px) {
+    .wrapper {
+        width: 100%;
+        height: auto;
+        padding: 70px 0px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .about h1 {
+        color: var(--clr-main);
+        font-size: 1.5em;
+    }
+    
+    .about p {
+        font-size: 0.95em;
+        letter-spacing: 1px;
+    }
+    
+    .about p1 {
+        font-size: 0.95em;
+        letter-spacing: 1px;
+    }
+}
