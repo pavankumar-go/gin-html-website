@@ -5,6 +5,7 @@ RUN apk add --no-cache git ca-certificates g++
 RUN GOOS=linux GOARCH=arm64 go build -ldflags '-extldflags "-static"' -o website
 RUN mkdir requirements \
   && cp -R static requirements/ \
+  && cp -R scripts requirements/ \
   && cp -R templates requirements/ \
   && cp website requirements/
 
