@@ -8,6 +8,10 @@ services:
       -  ./website.db:/opt/app/website.db
       -  ./static:/opt/app/static
     restart: on-failure
+    environment:
+      - SECRET_PATH=/run/secrets/app_secret
+    secrets:
+      - app_secret
     deploy:
       replicas: 3
       resources:
@@ -34,3 +38,7 @@ services:
       - website
     ports:
       - "80:80"
+
+secrets:
+  app_secret:
+    file: .env

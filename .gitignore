@@ -1,6 +1,7 @@
 *.db
 TODO
-vendor/*
+vendor
 static/assets/images/places/*
 tmp/*
 gin-html-website
+deploy/.env
