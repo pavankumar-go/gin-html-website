@@ -1,5 +1,4 @@
 version: "3.9"
-
 services:
   website:
     image: pavankumar6/website:v1.0.5-arm64
@@ -8,6 +7,7 @@ services:
     volumes:
       -  ./website.db:/opt/app/website.db
       -  ./static:/opt/app/static
+    restart: on-failure
     deploy:
       replicas: 3
       resources:
@@ -19,6 +19,7 @@ services:
           memory: 100M
   nginx:
     image: nginx:alpine
+    restart: on-failure
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     deploy:
@@ -33,4 +34,3 @@ services:
       - website
     ports:
       - "80:80"
-

@@ -60,7 +60,7 @@ enlarge.forEach(function (btn, index) {
             imgBox.style.width = deviceWidth + "px";
             nextBtn.style.display = "none";
             prevBtn.style.display = "none";
-        }else {
+        } else {
             nextBtn.style.display = "block";
             prevBtn.style.display = "block";
         }

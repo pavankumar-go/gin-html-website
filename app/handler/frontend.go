@@ -118,3 +118,22 @@ func ValleySchool() gin.HandlerFunc {
 		c.HTML(200, "valley_school.html", nil)
 	}
 }
+
+// Admin frontend
+func AdminAPIBirdUpload() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "bird_upload.html", nil)
+	}
+}
+
+func AdminAPIPlaceUpload() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "place_upload.html", nil)
+	}
+}
+
+func AdminAPIPlacePatch() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "update_place_thumbnail.html", nil)
+	}
+}

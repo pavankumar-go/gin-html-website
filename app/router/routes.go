@@ -37,6 +37,9 @@ func StartServer(ctx context.Context, appPath string) {
 	app.GET("/about", handler.About())
 	app.GET("/blogs", handler.Blogs())
 	app.GET("/places", handler.Places())
+	app.GET("/admin/bird/upload", handler.AdminAPIBirdUpload())
+	app.GET("/admin/place/upload", handler.AdminAPIPlaceUpload())
+	app.GET("/admin/place/update", handler.AdminAPIPlacePatch())
 
 	places := app.Group("/places")
 	places.GET("/blr", handler.Bangalore())
@@ -45,6 +48,7 @@ func StartServer(ctx context.Context, appPath string) {
 	places.GET("/ganeshGudi", handler.ValleySchool())
 
 	adminAPI := app.Group("/v1")
+	adminAPI.Use(middleware.Auth())
 	adminAPI.POST("/bird/upload", api.AddBird())
 	// adminAPI.DELETE("/bird/:birdId/place/:placeId", api.AddPlace()) - refer handler comments frontend.go
 
@@ -53,9 +57,7 @@ func StartServer(ctx context.Context, appPath string) {
 	adminAPI.PATCH("/place/:id", api.UpdatePlace())
 
 	// 404 route
-	// app.NoRoute(app.o0O())
 
-	// gin.SetMode()
 	server := &http.Server{
 		Addr:    ":8080",
 		Handler: app,

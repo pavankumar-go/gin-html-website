@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PKP Admin</title>
+</head>
+
+<body>
+    <h1>Add Place</h1>
+    <form enctype="multipart/form-data" action="http://pavankumar.photography/v1/place/create" method="POST">
+        <label for="name">Place Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="image">Place Thumbnail:</label>
+        <input type="file" id="image" name="image" accept="image/*"><br><br>
+
+        <label for="shortname">Place Shortname:</label>
+        <input type="text" id="shortname" name="shortname"><br><br>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"><br><br>
+        
+        <input type="submit" value="Upload">
+    </form>
+</body>
+
+</html>

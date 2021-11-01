@@ -95,9 +95,9 @@ func DeletePlace() gin.HandlerFunc {
 func UpdatePlace() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
-		placeIDStr := c.Param("id")
+		placeIDStr, _ok := c.GetPostForm("id")
 		placeID, err := strconv.Atoi(placeIDStr)
-		if err != nil {
+		if err != nil || !_ok {
 			log.Println("failed to strconv.Atoi : ", err)
 			c.AbortWithStatusJSON(400, gin.H{
 				"message": "invalid id",
