@@ -13,26 +13,30 @@ const imgTag = document.getElementById('image-tag');
 
 const navBar = document.querySelector('.nav-bar');
 
+var imgs = document.getElementsByClassName('imgs');
 
 let currentImgIndex = 0;
 
 // for mobile phones - touch on image to navigate between images
 imgTag.addEventListener('click', function () {
-    currentImgIndex++;
     if (currentImgIndex === allImages.length) {
-        currentImgIndex = 1;
+        currentImgIndex = 0;
     }
-
+    currentImgIndex++;
     currentImageDisplay(currentImgIndex);
 })
 
 // left arrow - click to go previous image from current image
 prevBtn.addEventListener('click', function () {
-    currentImgIndex--;
     if (currentImgIndex === 0) {
         currentImgIndex = allImages.length;
+        // disable image view after last image in list is viewed
+        navBar.style.display = "block";
+        imageView.style.display = "none";
+        imageBox.style.display = "none";
     }
 
+    currentImgIndex--;
     currentImageDisplay(currentImgIndex);
 })
 
@@ -40,9 +44,12 @@ prevBtn.addEventListener('click', function () {
 nextBtn.addEventListener('click', function () {
     currentImgIndex++;
     if (currentImgIndex === allImages.length) {
-        currentImgIndex = 1;
+        currentImgIndex = 0;
+        // disable image view after last image in list is viewed
+        navBar.style.display = "block";
+        imageView.style.display = "none";
+        imageBox.style.display = "none";
     }
-
     currentImageDisplay(currentImgIndex);
 })
 
@@ -52,6 +59,7 @@ enlarge.forEach(function (btn, index) {
         navBar.style.display = "none";
         imageView.style.display = "block";
         imageBox.style.display = "block";
+        currentImgIndex = index;
 
         // disable arrow keys for screens less than 820px (ipad onwards)
         if (window.screen.width <= 820) {
@@ -65,13 +73,21 @@ enlarge.forEach(function (btn, index) {
             prevBtn.style.display = "block";
         }
 
-        currentImgIndex = index + 1;
         currentImageDisplay(currentImgIndex);
     })
 })
 
 function currentImageDisplay(index) {
-    imgTag.src = `/static/assets/images/places/1/${index}.jpg`
+    // added for mobile click - it starts with 1 .. for some reason - 1st missed was getting missed
+    if (currentImgIndex === allImages.length) {
+        imgTag.src = imgs[0].src;
+        // disable image view after last image in list is viewed
+        navBar.style.display = "block";
+        imageView.style.display = "none";
+        imageBox.style.display = "none";
+    }
+
+    imgTag.src = imgs[index].src;
 }
 
 // exist single image view by clicking anywhere other than the image or arrow keys
