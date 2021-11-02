@@ -10,7 +10,7 @@
 
 <body>
     <h1>Update Place Thumbnail</h1>
-    <form enctype="multipart/form-data" action="http://pavankumar.photography/v1/place/create" method="PATCH">
+    <form enctype="multipart/form-data" action="{{ .Host }}/v1/place/create" method="PATCH">
         <label for="image">New Place Thumbnail:</label>
         <input type="file" id="image" name="image" accept="image/*"><br><br>
 

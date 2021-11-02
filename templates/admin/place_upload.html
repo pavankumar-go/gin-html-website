@@ -10,7 +10,7 @@
 
 <body>
     <h1>Add Place</h1>
-    <form enctype="multipart/form-data" action="http://pavankumar.photography/v1/place/create" method="POST">
+    <form enctype="multipart/form-data" action="{{ .Host }}/v1/place/create" method="POST">
         <label for="name">Place Name:</label>
         <input type="text" id="name" name="name"><br><br>
 

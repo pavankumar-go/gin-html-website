@@ -10,7 +10,7 @@
 
 <body>
     <h1>Upload Bird Image</h1>
-    <form enctype="multipart/form-data" action="http://pavankumar.photography/v1/bird/upload" method="POST">
+    <form enctype="multipart/form-data" action="{{ .Host }}/v1/bird/upload" method="POST">
         <label for="name">Bird Name:</label>
         <input type="text" id="name" name="name"><br><br>
 
