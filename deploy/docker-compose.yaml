@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   website:
-    image: pavankumar6/website:v1.0.5-arm64
+    image: pavankumar6/website:v1.2.0-arm64
     ports:
       - "8080"
     volumes:
@@ -10,6 +10,7 @@ services:
     restart: on-failure
     environment:
       - SECRET_PATH=/run/secrets/app_secret
+      - HOST=http://localhost:8080
     secrets:
       - app_secret
     deploy:
