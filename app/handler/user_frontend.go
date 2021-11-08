@@ -55,6 +55,10 @@ func Places() gin.HandlerFunc {
 			Place: *places,
 		}
 
+		for _, place := range allPlaces.Place {
+			place.UpdatedAt = controller.GetLatestUploadDate(place.ID)
+		}
+
 		tmpl := template.Must(template.ParseFiles("templates/main/places.html"))
 		err = tmpl.Execute(c.Writer, allPlaces)
 		if err != nil {

@@ -11,9 +11,9 @@ var Host string
 
 func init() {
 	var ok bool
-	Host, ok = os.LookupEnv("HOST")
+	Host, ok = os.LookupEnv("HOST_ADDRESS")
 	if !ok {
-		log.Fatalln("HOST is unset")
+		log.Fatalln("HOST_ADDRESS is unset")
 	}
 }
 

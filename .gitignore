@@ -1,3 +1,5 @@
+signs/*
+.env
 *.db
 TODO
 vendor
