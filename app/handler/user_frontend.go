@@ -51,12 +51,11 @@ func Places() gin.HandlerFunc {
 			return
 		}
 
-		allPlaces := types.Places{
-			Place: *places,
-		}
+		var allPlaces types.Places
 
-		for _, place := range allPlaces.Place {
+		for _, place := range *places {
 			place.UpdatedAt = controller.GetLatestUploadDate(place.ID)
+			allPlaces.Place = append(allPlaces.Place, place)
 		}
 
 		tmpl := template.Must(template.ParseFiles("templates/main/places.html"))
