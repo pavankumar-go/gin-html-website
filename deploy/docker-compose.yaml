@@ -1,45 +1,56 @@
 version: "3.9"
 services:
   website:
-    image: pavankumar6/website:v1.2.0-arm64
+    image: pavankumar6/website:v1.3.0-arm64
     ports:
       - "8080"
     volumes:
-      -  ./website.db:/opt/app/website.db
-      -  ./static:/opt/app/static
+      - ./website-data/website.db:/opt/app/website.db
+      - ./website-data/places:/opt/app/static/assets/images/places
+      - ./website-data/main-bg:/opt/app/static/assets/images/main-bg:ro
     restart: on-failure
     environment:
       - SECRET_PATH=/run/secrets/app_secret
-      - HOST=http://localhost:8080
+      - HOST_ADDRESS=https://www.pavankumar.photography
     secrets:
       - app_secret
     deploy:
       replicas: 3
       resources:
         limits:
-          cpus: '0.100'
-          memory: 200M
+          cpus: '0.200'
+          memory: 250M
         reservations:
-          cpus: '0.50'
+          cpus: '0.100'
           memory: 100M
   nginx:
-    image: nginx:alpine
+    image: nginx:1.21-alpine
     restart: on-failure
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./public:/var/www/html
+      - ./conf.d:/etc/nginx/conf.d:ro
+      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/data:/var/www/certbot
     deploy:
       resources:
         limits:
-          cpus: '0.100'
+          cpus: '0.200'
           memory: 200M
         reservations:
-          cpus: '0.50'
+          cpus: '0.100'
           memory: 100M
     depends_on:
       - website
     ports:
-      - "80:80"
-
+      - 80:80
+      - 443:443
+  certbot:
+    image: certbot/certbot:arm64v8-v1.20.0
+    command: certonly --webroot --webroot-path=/var/www/certbot --email pavankumarn6997@gmail.com --agree-tos --no-eff-email -d pavankumar.photography -d www.pavankumar.photography
+    volumes:
+        - ./certbot/conf:/etc/letsencrypt
+        - ./certbot/logs:/var/log/letsencrypt
+        - ./certbot/data:/var/www/certbot
 secrets:
   app_secret:
     file: .env
