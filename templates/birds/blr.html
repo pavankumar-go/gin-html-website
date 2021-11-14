@@ -15,7 +15,7 @@
 <body id=main-body>
     <div class="nav-bar">
         <ul>
-            <li><img class="logo" src="/static/assets/images/camera.png" /></li>
+            <li><img class="logo" src="/static/assets/images/signs/13.png" /></li>
             <li> <a href="/home">Home</a></li>
             <!-- <li> <a href="/blogs">Blogs</a></li> -->
             <li class="active"> <a href="/places">Gallery</a></li>
@@ -26,7 +26,9 @@
         {{ range .Bird}}
         <div class="container images">
             <img class="imgs" src="/static/assets/images/places/{{.PlaceID}}/{{.ID}}.jpg">
-            <!-- <h1>{{.Name}}</h1> -->
+            <div classs="bName">
+                <p>{{.Name}}</p>
+            </div>
         </div>
         {{end}}
     </div>

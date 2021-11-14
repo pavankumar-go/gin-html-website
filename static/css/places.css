@@ -66,13 +66,8 @@ body {
 }
 
 .logo {
-    width: 100px;
-    height: 60px;
-}
-
-.main-logo {
-    width: 22%;
-    height: 22%;
+    width: 80px;
+    height: 40px;
 }
 
 .wrapper-grid {
