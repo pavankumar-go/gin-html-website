@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    /* overflow: hidden; exception */
+    overflow: hidden; 
 }
 
 :root {
@@ -9,25 +9,19 @@
     --border-radius: 0.2em;
 }
 
-.menu {
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    margin: 35px, 0;
-    display: none;
-}
-
 body {
     margin: 0;
     font-family: 'Trebuchet MS';
     font-size: var(--font-size);
     background-color: black;
-    color: white;
 }
 
 .nav-bar {
+    position: fixed;
     width: 100vw;
-    margin-top: 1em;
+    padding-top: 1em;
+    margin-top: 0em;
+    padding-bottom: 1em;
 }
 
 .nav-bar ul {
@@ -36,7 +30,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     margin: 0;
-    height: 3em;
+    height: 2.5em;
     padding: 0;
     text-decoration: none;
 }
@@ -62,14 +56,10 @@ body {
 }
 
 .logo {
-    width: 100px;
-    height: 60px;
+    width: 80px;
+    height: 50px;
 }
 
-.main-logo {
-    width: 22%;
-    height: 22%;
-}
 /* about me */
 
 .wrapper {
@@ -91,6 +81,7 @@ body {
     width: 600px;
     padding: 0 10px;
     max-width: 100%;
+    color: white;
 }
 
 .content {
