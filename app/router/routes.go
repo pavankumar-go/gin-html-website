@@ -43,9 +43,11 @@ func StartServer(ctx context.Context, appPath string) {
 
 	places := app.Group("/places")
 	places.GET("/blr", handler.Bangalore())
-	places.GET("/gaganachukki", handler.Gaganachukki())
-	places.GET("/valleySchool", handler.Ganeshgudi())
-	places.GET("/ganeshGudi", handler.ValleySchool())
+	places.GET("/mandya", handler.Mandya())
+
+	// places.GET("/gaganachukki", handler.Gaganachukki())
+	// places.GET("/valleySchool", handler.Ganeshgudi())
+	// places.GET("/ganeshGudi", handler.ValleySchool())
 
 	adminAPI := app.Group("/v1")
 	adminAPI.Use(middleware.Auth())

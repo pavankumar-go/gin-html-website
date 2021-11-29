@@ -60,10 +60,10 @@ func AddBird(name string, placeID uint, file *multipart.FileHeader, quality int)
 	return bird, nil
 }
 
-func GetBirds() (*[]models.Bird, error) {
+func GetBirds(placeId int) (*[]models.Bird, error) {
 	db := database.GetDBConnection()
 	var birds []models.Bird
-	err := db.Order("updated_at DESC").Find(&birds).Error // show latest first
+	err := db.Order("updated_at DESC").Where("place_id = ?", placeId).Find(&birds).Having("place_id = ", placeId).Error // show latest first
 	if err != nil {
 		log.Println("error listing birds..", err)
 		return nil, err

@@ -12,24 +12,24 @@ import (
 
 func HomePage() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Header("max-age", "0")
-		c.Header("Cache-Control", "no-cache")
+		// c.Header("max-age", "0")
+		// c.Header("Cache-Control", "no-cache")
 		c.HTML(200, "home.html", nil)
 	}
 }
 
 func About() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Header("max-age", "0")
-		c.Header("Cache-Control", "no-cache")
+		// c.Header("max-age", "0")
+		// c.Header("Cache-Control", "no-cache")
 		c.HTML(200, "about.html", nil)
 	}
 }
 
 func Blogs() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Header("max-age", "0")
-		c.Header("Cache-Control", "no-cache")
+		// c.Header("max-age", "0")
+		// c.Header("Cache-Control", "no-cache")
 		tmpl := template.Must(template.ParseFiles("templates/main/blogs.html"))
 		err := tmpl.Execute(c.Writer, "blogs")
 		if err != nil {
@@ -42,8 +42,8 @@ func Blogs() gin.HandlerFunc {
 
 func Places() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Header("max-age", "0")
-		c.Header("Cache-Control", "no-cache")
+		// c.Header("max-age", "0")
+		// c.Header("Cache-Control", "no-cache")
 		places, err := controller.GetPlaces()
 		if err != nil {
 			log.Println("failed to get places: ", err)
@@ -72,10 +72,10 @@ func Places() gin.HandlerFunc {
 
 func Bangalore() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Header("max-age", "0")
-		c.Header("Cache-Control", "no-cache")
+		// c.Header("max-age", "0")
+		// c.Header("Cache-Control", "no-cache")
 
-		birds, err := controller.GetBirds()
+		birds, err := controller.GetBirds(1) // 1: bangalore
 		if err != nil {
 			log.Println("failed to get places: ", err)
 			c.AbortWithStatusJSON(500, "failed to render")
@@ -88,7 +88,7 @@ func Bangalore() gin.HandlerFunc {
 
 		// NOTE: this should pre-exist corresponds to models.ShortName
 		// Even API should comply to this shortName /places/<shortName>
-		tmpl := template.Must(template.ParseFiles("templates/birds/blr.html"))
+		tmpl := template.Must(template.ParseFiles("templates/birds/common.html"))
 		err = tmpl.Execute(c.Writer, allBirds)
 		if err != nil {
 			log.Println("failed to render birds: ", err)
@@ -98,26 +98,27 @@ func Bangalore() gin.HandlerFunc {
 	}
 }
 
-func Gaganachukki() gin.HandlerFunc {
+func Mandya() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Header("max-age", "0")
-		c.Header("Cache-Control", "no-cache")
-		c.HTML(200, "gaganachukki.html", nil)
-	}
-}
+		birds, err := controller.GetBirds(2) // 2: mandya
+		if err != nil {
+			log.Println("failed to get places: ", err)
+			c.AbortWithStatusJSON(500, "failed to render")
+			return
+		}
 
-func Ganeshgudi() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.Header("max-age", "0")
-		c.Header("Cache-Control", "no-cache")
-		c.HTML(200, "ganesh_gudi.html", nil)
-	}
-}
+		allBirds := types.Birds{
+			Bird: *birds,
+		}
 
-func ValleySchool() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.Header("max-age", "0")
-		c.Header("Cache-Control", "no-cache")
-		c.HTML(200, "valley_school.html", nil)
+		// NOTE: this should pre-exist corresponds to models.ShortName
+		// Even API should comply to this shortName /places/<shortName>
+		tmpl := template.Must(template.ParseFiles("templates/birds/common.html"))
+		err = tmpl.Execute(c.Writer, allBirds)
+		if err != nil {
+			log.Println("failed to render birds: ", err)
+			c.AbortWithStatusJSON(500, "failed to render birds")
+			return
+		}
 	}
 }

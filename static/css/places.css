@@ -73,9 +73,9 @@ body {
 .wrapper-grid {
     display: grid;
     margin-top: 2em;
-    grid-template-columns: repeat(1, 1fr);
-    /* grid-template-rows: auto; */
-    grid-gap: 1em;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 0em;
+    column-gap: 1em;
     margin: 2em;
     margin-top: 3em;
 }
@@ -83,12 +83,11 @@ body {
 .container {
     cursor: pointer;
     margin-top: 2em;
-    /* make this linear gradient & add background-image instead */
     background-color: rgba(123, 122, 122, 0.234);
     border-radius: var(--border-radius);
     padding: 1em;
     border-top: 4px solid var(--clr-main);
-    height: 100vh;
+    height: 50vh;
 }
 
 .container h2 {
