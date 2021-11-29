@@ -33,7 +33,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     margin: 0;
-    height: 3em;
+    height: 2.5em;
     padding: 0;
     text-decoration: none;
 }
@@ -66,10 +66,10 @@ body {
 /* images */
 
 .wrapper-grid {
-    margin-top: 4em;
+    margin-top: 3em;
     position: relative;
     column-count: 4;
-    padding: 20px;
+    padding: 5px;
     column-gap: 5px;
     overflow: hidden;
 }

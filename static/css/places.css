@@ -1,5 +1,4 @@
 * {
-    box-sizing: border-box;
     overflow-x: hidden;
 }
 
@@ -41,7 +40,7 @@ body {
     align-items: center;
     margin: 0;
     height: 3em;
-    padding: 0;
+    padding: 0px;
     text-decoration: none;
 }
 
@@ -76,7 +75,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 0em;
     column-gap: 1em;
-    margin: 2em;
+    margin: 0.5em;
     margin-top: 3em;
 }
 

@@ -88,7 +88,7 @@ func Bangalore() gin.HandlerFunc {
 
 		// NOTE: this should pre-exist corresponds to models.ShortName
 		// Even API should comply to this shortName /places/<shortName>
-		tmpl := template.Must(template.ParseFiles("templates/birds/common.html"))
+		tmpl := template.Must(template.ParseFiles("templates/main/places/common.html"))
 		err = tmpl.Execute(c.Writer, allBirds)
 		if err != nil {
 			log.Println("failed to render birds: ", err)
@@ -113,7 +113,7 @@ func Mandya() gin.HandlerFunc {
 
 		// NOTE: this should pre-exist corresponds to models.ShortName
 		// Even API should comply to this shortName /places/<shortName>
-		tmpl := template.Must(template.ParseFiles("templates/birds/common.html"))
+		tmpl := template.Must(template.ParseFiles("templates/main/places/common.html"))
 		err = tmpl.Execute(c.Writer, allBirds)
 		if err != nil {
 			log.Println("failed to render birds: ", err)
