@@ -30,6 +30,7 @@ body {
     padding-top: 1em;
     margin-top: 0em;
     padding-bottom: 1em;
+    background-color: black;
 }
 
 .nav-bar ul {
@@ -41,6 +42,7 @@ body {
     height: 2.5em;
     padding: 0;
     text-decoration: none;
+    overflow: hidden;
 }
 
 .nav-bar ul li {
