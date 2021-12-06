@@ -17,17 +17,42 @@ var imgs = document.getElementsByClassName('imgs');
 
 let currentImgIndex = 0;
 
-// for mobile phones - touch on image to navigate between images
-imgTag.addEventListener('click', function () {
-    if (currentImgIndex === allImages.length) {
-        currentImgIndex = 0;
+
+var midPoint;
+var leftThreshold;
+var rightThreshold;
+var touchAt;
+// ------------------------------------ 
+// 0                                355
+//                237
+// 0       x      237         x     255
+
+// for swiping images
+function touchStart(event) {
+    touchAt = event.touches[0].clientX
+    midPoint = imgTag.clientWidth / 2;
+    const threshold = midPoint / 4;
+    rightThreshold = midPoint + threshold;
+    leftThreshold = midPoint - threshold;
+    imgTag.
+    imgTag.style.animation = 'splash 1s normal forwards ease-in-out'
+}
+
+// when touch/swipe ended, determine the direction of swipe
+function touchEnd() {
+    if (touchAt > midPoint && touchAt >= rightThreshold) {
+        displayNextImg()
+    } else if (touchAt < midPoint && touchAt <= leftThreshold) {
+        displayPrevImg()
     }
-    currentImgIndex++;
-    currentImageDisplay(currentImgIndex);
-})
+}
 
 // left arrow - click to go previous image from current image
 prevBtn.addEventListener('click', function () {
+    displayPrevImg()
+})
+
+function displayPrevImg() {
     if (currentImgIndex === 0) {
         currentImgIndex = allImages.length;
         // disable image view after last image in list is viewed
@@ -38,10 +63,14 @@ prevBtn.addEventListener('click', function () {
 
     currentImgIndex--;
     currentImageDisplay(currentImgIndex);
-})
+}
 
 // right arrow - click to go next image from current image
 nextBtn.addEventListener('click', function () {
+    displayNextImg()
+})
+
+function displayNextImg() {
     currentImgIndex++;
     if (currentImgIndex === allImages.length) {
         currentImgIndex = 0;
@@ -51,7 +80,7 @@ nextBtn.addEventListener('click', function () {
         imageBox.style.display = "none";
     }
     currentImageDisplay(currentImgIndex);
-})
+}
 
 // get all images and view individual on click
 enlarge.forEach(function (btn, index) {
@@ -86,7 +115,6 @@ function currentImageDisplay(index) {
         imageView.style.display = "none";
         imageBox.style.display = "none";
     }
-
     imgTag.src = imgs[index].src;
 }
 
