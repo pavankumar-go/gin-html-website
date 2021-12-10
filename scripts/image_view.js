@@ -61,7 +61,6 @@ nextBtn.addEventListener('click', function () {
     displayNextImg()
 })
 
-
 function displayPrevImg() {
     if (currentImgIndex === 0) {
         currentImgIndex = allImages.length;
@@ -123,7 +122,6 @@ function showImageWithIndex(index) {
         imageViewNavs.style.display = "none";
         imageBox.style.display = "none";
     }
-
     imgTag.src = imgs[index].src;
 }
 
