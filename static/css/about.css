@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 :root {
@@ -14,6 +14,69 @@ body {
     font-family: 'Trebuchet MS';
     font-size: var(--font-size);
     background-color: black;
+}
+
+.hamburgerMenu {
+    display: none;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 2px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.menu-icon-change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-3.5px, 3.5px);
+    transform: rotate(-45deg) translate(-3.5px, 3.5px);
+    background-color: var(--clr-main);
+}
+
+.menu-icon-change .bar2 {
+    opacity: -1;
+}
+
+.menu-icon-change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, 8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+    background-color: var(--clr-main);
+}
+
+.showMenuItems {
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.openedMenu {
+    display: none;
+    background-color: black;
+    position: relative;
+    height: 100vh;
+    top: 8vh;
+}
+
+.menuContainer {
+    margin-top: 60%;
+}
+
+.menuItems {
+    margin-top: 10px;
+}
+
+.menuItems a {
+    list-style: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: xx-large;
+    color: white;
+    margin-left: 35%;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
+.menuItems .active {
+    color: var(--clr-main);
 }
 
 .nav-bar {
@@ -56,7 +119,7 @@ body {
 }
 
 .logo {
-    width: 80px;
+    width: 30px;
     height: 50px;
 }
 
@@ -113,19 +176,34 @@ body {
         height: auto;
         padding: 70px 0px;
     }
+
+    .flexMenu {
+        display: none;
+    }
+    .hamburgerMenu {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 650px) {
+    .flexMenu {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: block;
+    }
+    
     .about h1 {
         color: var(--clr-main);
         font-size: 1.5em;
     }
-    
+
     .about p {
         font-size: 0.95em;
         letter-spacing: 1px;
     }
-    
+
     .about p1 {
         font-size: 0.95em;
         letter-spacing: 1px;

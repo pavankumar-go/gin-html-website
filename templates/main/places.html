@@ -9,19 +9,35 @@
     <title>PKP</title>
 </head>
 
+<script src="/scripts/menu.js" async defer></script>
 
 <body>
     <div class="nav-bar">
         <ul>
-            <li><img class="logo" src="/static/assets/images/signs/13.png" /></li>
-            <li> <a href="/home">Home</a></li>
-            <!-- <li> <a href="/blogs">Blogs</a></li> -->
-            <li class="active"> <a href="/places">Gallery</a></li>
-            <li> <a href="/about">About</a></li>
+            <li><img class="logo" src="/static/assets/images/signs/16.png" /></li>
+            <li class="flexMenu"><a href="/home">Home</a></li>
+            <li class="active flexMenu"><a href="/places">Gallery</a></li>
+            <li class="flexMenu"><a href="/about">About</a></li>
+
+            <li class="hamburgerMenu">
+                <div onclick="openMenu(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                <div>
+            </li>
         </ul>
     </div>
 
-    <div class="wrapper-grid">
+    <div class="openedMenu" id="openedMenu" style="display: none;">
+        <div class="menuContainer">
+            <div class="menuItems"><a href="/home">Home</a></div>
+            <div class="menuItems"><a class="active" href="/places">Gallery</a></div>
+            <div class="menuItems"><a href="/about">About</a></div>
+        </div>
+    </div>
+
+    <div class="wrapper-grid" id="rest">
         {{ range .Place}}
         <div class="container" id="{{.ID}}" onclick="window.location.href='/places/{{.ShortName}}'"
             style="background-image: url(/static/assets/images/places{{.BGImg}}); background-position: center; background-repeat: no-repeat; background-size: cover;">

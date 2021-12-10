@@ -16,6 +16,70 @@ body {
     background-color: black;
 }
 
+
+.hamburgerMenu {
+    display: none;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 2px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.menu-icon-change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-3.5px, 3.5px);
+    transform: rotate(-45deg) translate(-3.5px, 3.5px);
+    background-color: var(--clr-main);
+}
+
+.menu-icon-change .bar2 {
+    opacity: -1;
+}
+
+.menu-icon-change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, 8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+    background-color: var(--clr-main);
+}
+
+.showMenuItems {
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.openedMenu {
+    display: none;
+    background-color: black;
+    position: relative;
+    height: 100vh;
+    top: 8vh;
+}
+
+.menuContainer {
+    margin-top: 60%;
+}
+
+.menuItems {
+    margin-top: 10px;
+}
+
+.menuItems a {
+    list-style: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: xx-large;
+    color: white;
+    margin-left: 35%;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
+.menuItems .active {
+    color: var(--clr-main);
+}
+
 .nav-bar {
     position: fixed;
     width: 100vw;
@@ -60,7 +124,7 @@ body {
 }
 
 .logo {
-    width: 80px;
+    width: 30px;
     height: 50px;
 }
 
@@ -118,7 +182,7 @@ body {
 
 /* zoom and slide */
 
-#image-view {
+#image-view-navs {
     position: fixed;
     top: 0em;
     height: 100vh;
@@ -139,7 +203,7 @@ body {
 
 .image-box img {
     width: 100%;
-    height: auto;
+    height: 90vh;
     position: relative;
     text-align: center;
     object-fit: contain;
@@ -177,6 +241,21 @@ body {
     height: 50px;
 }
 
+#image-view-close {
+    position: fixed;
+    z-index: 3;
+    left: 90%;
+    top: 10%;
+    cursor: pointer;
+    font-size: xx-large;
+    color: white;
+    filter: brightness(50%);
+    display: none;
+}
+
+#image-view-close:hover {
+    filter: brightness(100%);
+}
 
 /* Responsive layout - makes a two column-layout instead of four columns */
 
@@ -184,11 +263,29 @@ body {
     .wrapper-grid {
         column-count: 3;
     }
+    #image-view-close {
+        top: 3%;
+        filter: brightness(70%);
+        left: 93%;
+    }
 }
 
 @media screen and (max-width: 425px) {
     .wrapper-grid {
         column-count: 1;
+    }
+    #image-view-close {
+        top: 3%;
+        filter: brightness(70%);
+        left: 90%;
+    }
+
+    .flexMenu {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: block;
     }
 }
 
@@ -197,5 +294,18 @@ body {
 @media screen and (max-width: 412px) {
     .wrapper-grid {
         column-count: 1;
+    }
+    #image-view-close {
+        top: 3%;
+        filter: brightness(70%);
+        left: 90%;
+    }
+
+    .flexMenu {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: block;
     }
 }
