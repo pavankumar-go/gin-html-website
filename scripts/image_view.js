@@ -30,15 +30,15 @@ var touchAt;
 
 // for swiping images
 function touchStart(event) {
-    if (event.touches.length === 1) {
+    if (event.touches.length > 1) {
+        console.log('detected multi touch')
+    } else {
         touchAt = event.touches[0].clientX
         midPoint = imgTag.clientWidth / 2;
         const threshold = midPoint / 4;
         rightThreshold = midPoint + threshold;
         leftThreshold = midPoint - threshold;
         imgTag.style.animation = 'splash 1s normal forwards ease-in-out'
-    } else {
-        console.log("detected multi touch")
     }
 }
 
