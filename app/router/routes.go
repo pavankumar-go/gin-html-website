@@ -20,6 +20,7 @@ func StartServer(ctx context.Context, appPath string) {
 	app.Use(middleware.CORS())
 
 	app.Static("static/css", appPath+"/static/css")
+	app.Static("static/fonts", appPath+"/static/fonts")
 	app.Static("scripts", appPath+"/scripts")
 	app.Static("static/assets/images", appPath+"/static/assets/images")
 	app.Static("static/assets/sounds", appPath+"/static/assets/sounds")
