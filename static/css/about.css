@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 :root {
@@ -85,6 +85,7 @@ body {
     padding-top: 1em;
     margin-top: 0em;
     padding-bottom: 1em;
+    z-index: 10;
 }
 
 .nav-bar ul {
