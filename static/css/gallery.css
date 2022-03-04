@@ -1,0 +1,188 @@
+* {
+    overflow-x: hidden;
+}
+
+:root {
+    --clr-main: #ffb640;
+    --font-size: 16px;
+    --border-radius: 0.2em;
+}
+
+.menu {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin: 35px, 0;
+    display: none;
+}
+
+body {
+    margin: 0;
+    font-family: 'Trebuchet MS';
+    font-size: var(--font-size);
+    background-color: black;
+    color: white;
+}
+
+
+.hamburgerMenu {
+    display: none;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 2px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.menu-icon-change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-3.5px, 3.5px);
+    transform: rotate(-45deg) translate(-3.5px, 3.5px);
+    background-color: var(--clr-main);
+}
+
+.menu-icon-change .bar2 {
+    opacity: -1;
+}
+
+.menu-icon-change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, 8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+    background-color: var(--clr-main);
+}
+
+.showMenuItems {
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.openedMenu {
+    display: none;
+    background-color: black;
+    position: relative;
+    height: 100vh;
+    top: 8vh;
+}
+
+.menuContainer {
+    margin-top: 60%;
+}
+
+.menuItems {
+    margin-top: 10px;
+}
+
+.menuItems a {
+    list-style: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: xx-large;
+    color: white;
+    margin-left: 35%;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
+.menuItems .active {
+    color: var(--clr-main);
+}
+
+.nav-bar {
+    position: fixed;
+    width: 100vw;
+    padding-top: 1em;
+    margin-top: 0em;
+    padding-bottom: 1em;
+    background-color: black;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    height: 2.5em;
+    padding: 0;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.nav-bar ul li {
+    padding-right: 2em;
+    list-style: none;
+}
+
+.nav-bar ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-bar ul li.active a {
+    font-weight: bolder;
+    color: #ffb640;
+}
+
+.nav-bar ul li:first-child {
+    margin-right: auto;
+    margin-left: 2em;
+}
+
+.logo {
+    width: 30px;
+    height: 50px;
+}
+
+.wrapper-grid {
+    display: grid;
+    margin-top: 2em;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 0em;
+    column-gap: 0.25em;
+    margin: 0.25em;
+    margin-top: 3em;
+}
+
+.container {
+    cursor: pointer;
+    margin-top: 2em; /* DO NOT EDIT*/
+    background-color: rgba(123, 122, 122, 0.234);
+    border-radius: var(--border-radius);
+    padding: 1em;
+    border-top: 4px solid var(--clr-main);
+    height: 100vh;
+    margin-bottom: -1.5em;
+}
+
+.container h2 {
+    margin-top: 0.2em;
+    margin-bottom: 0em;
+    font-size: x-large;
+}
+
+.date {
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+}
+
+@media screen and (max-width:700px) {
+    .wrapper-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flexMenu {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: block;
+    }
+
+    .container {
+        height: 50vh;
+    }
+}

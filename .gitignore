@@ -10,4 +10,4 @@ deploy/.env
 *.zip
 *.jpg
 *.png
-
+**.DS_Store**

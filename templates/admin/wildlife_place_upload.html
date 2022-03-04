@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <h1>Add Place</h1>
-    <form enctype="multipart/form-data" action="{{ .Host }}/v1/place/create" method="POST">
+    <h1>Add Wildlife Place</h1>
+    <form enctype="multipart/form-data" action="{{ .Host }}/v1/place/wildlife/create" method="POST">
         <label for="name">Place Name:</label>
         <input type="text" id="name" name="name"><br><br>
 
@@ -20,7 +20,7 @@
         <label for="shortname">Place Shortname:</label>
         <input type="text" id="shortname" name="shortname"><br><br>
 
-        <label for="password">Password</label>
+        <label for="password">Key</label>
         <input type="password" id="password" name="password"><br><br>
         
         <input type="submit" value="Upload">

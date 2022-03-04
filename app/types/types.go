@@ -3,22 +3,32 @@ package types
 import "github.com/gin-html-website/models"
 
 // blogs.html
-type Blogs struct {
-	Blog []Blog
+// type Blogs struct {
+// 	Blog []Blog
+// }
+
+// type Blog struct {
+// 	Title   string
+// 	Date    string
+// 	Content string
+// }
+
+// places.html
+type LandscapePlaces struct {
+	LandscapePlace []models.LandscapePlace
 }
 
-type Blog struct {
-	Title   string
-	Date    string
-	Content string
+// birds/place.html
+type Landscapes struct {
+	Landscape []models.Landscape
 }
 
 // places.html
-type Places struct {
+type WildlifePlaces struct {
 	Place []models.Place
 }
 
 // birds/place.html
-type Birds struct {
+type Wildlife struct {
 	Bird []models.Bird
 }

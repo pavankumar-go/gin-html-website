@@ -5,23 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/places.css">
     <link rel="stylesheet" href="/static/css/fonts.css">
     <title>PKP</title>
 </head>
 
 <script src="/scripts/menu.js" async defer></script>
 
-<body id="bimg">
+<body>
     <div class="nav-bar">
         <ul>
             <li><img class="logo" src="/static/assets/images/signs/16.png" /></li>
-            <li class="active flexMenu"><a href="/home">Home</a></li>
-            <li class="flexMenu"><a href="/gallery">Gallery</a></li>
+            <li class="flexMenu"><a href="/home">Home</a></li>
+            <li class="active flexMenu"><a href="/gallery">Gallery</a></li>
             <li class="flexMenu"><a href="/about">About</a></li>
 
             <li class="hamburgerMenu">
-                <div onclick="homeMenu(this)">
+                <div onclick="openMenu(this)">
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                     <div class="bar3"></div>
@@ -32,15 +32,22 @@
 
     <div class="openedMenu" id="openedMenu" style="display: none;">
         <div class="menuContainer">
-            <div class="menuItems"><a class="active" href="/home">Home</a></div>
-            <div class="menuItems"><a href="/gallery">Gallery</a></div>
+            <div class="menuItems"><a href="/home">Home</a></div>
+            <div class="menuItems"><a class="active" href="/gallery">Gallery</a></div>
             <div class="menuItems"><a href="/about">About</a></div>
         </div>
     </div>
 
     <div class="wrapper-grid" id="rest">
-        <h1><img class="main-logo" src="/static/assets/images/signs/3.png"/><h1>
+        {{ range .Place}}
+        <div class="container" id="{{.ID}}" onclick="window.location.href='/wildlife/places/{{.ShortName}}'"
+            style="background-image: url(/static/assets/images/places/wildlife/{{.BGImg}}); background-position: center; background-repeat: no-repeat; background-size: cover;">
+            <p class="date">{{.UpdatedAt.Format "2006 Jan 02" }}</p>
+            <h2>{{.Name}}</h2>
+        </div>
+        {{end}}
     </div>
+
 </body>
 
 </html>

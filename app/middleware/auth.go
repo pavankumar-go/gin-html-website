@@ -12,7 +12,6 @@ func Auth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		admPass := os.Getenv("ADMIN_PASS")
 		reqPass, ok := c.GetPostForm("password")
-		log.Println(admPass, "---", reqPass)
 		if !ok || reqPass != admPass {
 			log.Println("auth failed")
 			c.AbortWithStatusJSON(200, "invalid request")
