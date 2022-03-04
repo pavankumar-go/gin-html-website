@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PKP Admin</title>
+</head>
+
+<body>
+    <h1>Upload Landscape Image</h1>
+    <form enctype="multipart/form-data" action="{{ .Host }}/v1/landscape/upload" method="POST">
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*"><br><br>
+
+        <label for="place_id">Place ID:</label>
+        <input type="text" id="place_id" name="place_id"><br><br>
+
+        <label for="quality">Quality</label>
+        <input type="text" id="quality" name="quality"><br><br>
+
+        <label for="password">Key</label>
+        <input type="password" id="password" name="password"><br><br>
+
+        <input type="submit" value="Upload">
+    </form>
+</body>
+
+</html>

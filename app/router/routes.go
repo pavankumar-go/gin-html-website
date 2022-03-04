@@ -36,29 +36,45 @@ func StartServer(ctx context.Context, appPath string) {
 	app.GET("/", handler.HomePage())
 	app.GET("/home", handler.HomePage())
 	app.GET("/about", handler.About())
-	app.GET("/blogs", handler.Blogs())
-	app.GET("/places", handler.Places())
-	app.GET("/admin/bird/upload", handler.AdminAPIBirdUpload())
-	app.GET("/admin/place/upload", handler.AdminAPIPlaceUpload())
-	app.GET("/admin/place/update", handler.AdminAPIPlacePatch())
+	// app.GET("/blogs", handler.Blogs())
+	app.GET("/gallery", handler.Gallery())
+	app.GET("/wildlife/places", handler.WildlifePlaces())
+	app.GET("/landscape/places", handler.LandscapePlaces())
 
-	places := app.Group("/places")
-	places.GET("/blr", handler.Bangalore())
-	places.GET("/mandya", handler.Mandya())
+	wildlifePlaces := app.Group("/wildlife/places")
+	wildlifePlaces.GET("/blr", handler.W_Bangalore())
+	wildlifePlaces.GET("/mandya", handler.W_Mandya())
+
+	landscapePlaces := app.Group("/landscape/places")
+	landscapePlaces.GET("/blr", handler.L_Bangalore())
+	landscapePlaces.GET("/mandya", handler.L_Mandya())
 
 	// places.GET("/gaganachukki", handler.Gaganachukki())
 	// places.GET("/valleySchool", handler.Ganeshgudi())
 	// places.GET("/ganeshGudi", handler.ValleySchool())
 
+	app.GET("/admin/wildlife/upload", handler.AdminAPIWildlifeUpload())
+	app.GET("/admin/wildlife/place/upload", handler.AdminAPIWildlifePlaceUpload())
+	app.GET("/admin/wildlife/place/update", handler.AdminAPIWildlifePlacePatch())
+
+	app.GET("/admin/landscape/upload", handler.AdminAPILandscapeUpload())
+	app.GET("/admin/landscape/place/upload", handler.AdminAPILandscapePlaceUpload())
+	app.GET("/admin/landscape/place/update", handler.AdminAPILandscapePlacePatch())
+
 	adminAPI := app.Group("/v1")
 	adminAPI.Use(middleware.Auth())
-	adminAPI.POST("/bird/upload", api.AddBird())
+	adminAPI.POST("/wildlife/upload", api.AddBird())
+	adminAPI.POST("/landscape/upload", api.AddLandscape())
+
 	// adminAPI.DELETE("/bird/:birdId/place/:placeId", api.AddPlace()) - refer handler comments frontend.go
 
-	adminAPI.POST("/place/create", api.AddPlace())
-	adminAPI.DELETE("/place/:id", api.DeletePlace())
-	adminAPI.PATCH("/place/:id", api.UpdatePlace())
+	adminAPI.POST("/place/wildlife/create", api.AddWildlifePlace())
+	adminAPI.POST("/place/wildlife/delete", api.DeleteWildlifePlace())
+	adminAPI.POST("/place/wildlife/update", api.UpdateWildlifePlace())
 
+	adminAPI.POST("/place/landscape/create", api.AddLandscapePlace())
+	adminAPI.POST("/place/landscape/delete", api.DeleteLandscapePlace())
+	adminAPI.POST("/place/landscape/update", api.UpdateLandscapePlace())
 	// 404 route
 
 	server := &http.Server{

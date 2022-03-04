@@ -18,25 +18,52 @@ func init() {
 }
 
 // Admin frontend
-func AdminAPIBirdUpload() gin.HandlerFunc {
+func AdminAPIWildlifeUpload() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.HTML(200, "bird_upload.html", gin.H{
+		c.HTML(200, "wildlife_upload.html", gin.H{
 			"Host": Host,
 		})
 	}
 }
 
-func AdminAPIPlaceUpload() gin.HandlerFunc {
+func AdminAPIWildlifePlaceUpload() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.HTML(200, "place_upload.html", gin.H{
+		c.HTML(200, "wildlife_place_upload.html", gin.H{
 			"Host": Host,
 		})
 	}
 }
 
-func AdminAPIPlacePatch() gin.HandlerFunc {
+func AdminAPIWildlifePlacePatch() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.HTML(200, "update_place_thumbnail.html", gin.H{
+		c.HTML(200, "update_wildlife_place_thumbnail.html", gin.H{
+			"Host": Host,
+		})
+	}
+}
+
+
+
+// Admin frontend
+func AdminAPILandscapeUpload() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "landscape_upload.html", gin.H{
+			"Host": Host,
+		})
+	}
+}
+
+func AdminAPILandscapePlaceUpload() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "landscape_place_upload.html", gin.H{
+			"Host": Host,
+		})
+	}
+}
+
+func AdminAPILandscapePlacePatch() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "update_landscape_place_thumbnail.html", gin.H{
 			"Host": Host,
 		})
 	}

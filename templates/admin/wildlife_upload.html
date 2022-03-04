@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <h1>Upload Bird Image</h1>
-    <form enctype="multipart/form-data" action="{{ .Host }}/v1/bird/upload" method="POST">
-        <label for="name">Bird Name:</label>
+    <h1>Upload Wildlife Image</h1>
+    <form enctype="multipart/form-data" action="{{ .Host }}/v1/wildlife/upload" method="POST">
+        <label for="name">Name:</label>
         <input type="text" id="name" name="name"><br><br>
 
-        <label for="image">Bird Image:</label>
+        <label for="image">Image:</label>
         <input type="file" id="image" name="image" accept="image/*"><br><br>
 
         <label for="place_id">Place ID:</label>
@@ -23,7 +23,7 @@
         <label for="quality">Quality</label>
         <input type="text" id="quality" name="quality"><br><br>
 
-        <label for="password">Password</label>
+        <label for="password">Key</label>
         <input type="password" id="password" name="password"><br><br>
 
         <input type="submit" value="Upload">

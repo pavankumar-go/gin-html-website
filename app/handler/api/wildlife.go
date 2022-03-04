@@ -86,7 +86,7 @@ func AddBird() gin.HandlerFunc {
 			return
 		}
 
-		log.Println("image saved..", bird)
-		c.JSON(200, "image upload complete")
+		log.Println("bird image saved..", bird)
+		c.JSON(200, "bird image upload complete")
 	}
 }
