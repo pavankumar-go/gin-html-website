@@ -30,7 +30,7 @@ func AddBird(name string, placeID uint, file *multipart.FileHeader, quality int)
 	fileExtension := filepath.Ext(file.Filename)
 	birdID := bird.ID
 
-	dst, err := os.Create(fmt.Sprintf("static/assets/images/places/%d/%d%s", placeID, birdID, fileExtension))
+	dst, err := os.Create(fmt.Sprintf("static/assets/images/places/wildlife/%d/%d%s", placeID, birdID, fileExtension))
 	if err != nil {
 		return bird, err
 	}
