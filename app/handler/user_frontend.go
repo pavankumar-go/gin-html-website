@@ -106,37 +106,12 @@ func LandscapePlaces() gin.HandlerFunc {
 }
 
 // wildlife in places handlers...
-func W_Bangalore() gin.HandlerFunc {
+func W_Places(placeID int) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// c.Header("max-age", "0")
 		// c.Header("Cache-Control", "no-cache")
 
-		birds, err := controller.GetBirds(1) // 1: bangalore
-		if err != nil {
-			log.Println("failed to get places: ", err)
-			c.AbortWithStatusJSON(500, "failed to render")
-			return
-		}
-
-		allBirds := types.Wildlife{
-			Bird: *birds,
-		}
-
-		// NOTE: this should pre-exist corresponds to models.ShortName
-		// Even API should comply to this shortName /places/<shortName>
-		tmpl := template.Must(template.ParseFiles("templates/main/places/wildlife/common.html"))
-		err = tmpl.Execute(c.Writer, allBirds)
-		if err != nil {
-			log.Println("failed to render birds: ", err)
-			c.AbortWithStatusJSON(500, "failed to render birds")
-			return
-		}
-	}
-}
-
-func W_Mandya() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		birds, err := controller.GetBirds(2) // 2: mandya
+		birds, err := controller.GetBirds(placeID)
 		if err != nil {
 			log.Println("failed to get places: ", err)
 			c.AbortWithStatusJSON(500, "failed to render")
@@ -160,12 +135,12 @@ func W_Mandya() gin.HandlerFunc {
 }
 
 // wildlife in places handlers...
-func L_Bangalore() gin.HandlerFunc {
+func L_Places(placeID int) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// c.Header("max-age", "0")
 		// c.Header("Cache-Control", "no-cache")
 
-		landscapes, err := controller.GetLandscapes(1) // 1: bangalore
+		landscapes, err := controller.GetLandscapes(placeID)
 		if err != nil {
 			log.Println("failed to get places: ", err)
 			c.AbortWithStatusJSON(500, "failed to render")
@@ -178,31 +153,6 @@ func L_Bangalore() gin.HandlerFunc {
 
 		// NOTE: this should pre-exist corresponds to models.ShortName
 		// Even API should comply to this shortName /places/landscape/<shortName>
-		tmpl := template.Must(template.ParseFiles("templates/main/places/landscapes/common.html"))
-		err = tmpl.Execute(c.Writer, allLandscapes)
-		if err != nil {
-			log.Println("failed to render landscapes: ", err)
-			c.AbortWithStatusJSON(500, "failed to render landscapes")
-			return
-		}
-	}
-}
-
-func L_Mandya() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		landscapes, err := controller.GetLandscapes(2) // 2: mandya
-		if err != nil {
-			log.Println("failed to get places: ", err)
-			c.AbortWithStatusJSON(500, "failed to render")
-			return
-		}
-
-		allLandscapes := types.Landscapes{
-			Landscape: *landscapes,
-		}
-
-		// NOTE: this should pre-exist corresponds to models.ShortName
-		// Even API should comply to this shortName /places/landscapes/<shortName>
 		tmpl := template.Must(template.ParseFiles("templates/main/places/landscapes/common.html"))
 		err = tmpl.Execute(c.Writer, allLandscapes)
 		if err != nil {

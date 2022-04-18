@@ -41,17 +41,18 @@ func StartServer(ctx context.Context, appPath string) {
 	app.GET("/wildlife/places", handler.WildlifePlaces())
 	app.GET("/landscape/places", handler.LandscapePlaces())
 
+	// to add new route for a place
 	wildlifePlaces := app.Group("/wildlife/places")
-	wildlifePlaces.GET("/blr", handler.W_Bangalore())
-	wildlifePlaces.GET("/mandya", handler.W_Mandya())
-
+	wildlifePlaces.GET("/blr", handler.W_Places(1))
+	wildlifePlaces.GET("/mandya", handler.W_Places(2))
+	wildlifePlaces.GET("/jbr", handler.W_Places(3))
+	
+	// to add new route for a place
 	landscapePlaces := app.Group("/landscape/places")
-	landscapePlaces.GET("/blr", handler.L_Bangalore())
-	landscapePlaces.GET("/mandya", handler.L_Mandya())
+	landscapePlaces.GET("/blr", handler.L_Places(1))
+	landscapePlaces.GET("/mandya", handler.L_Places(2))
+	landscapePlaces.GET("/jbr", handler.L_Places(3))
 
-	// places.GET("/gaganachukki", handler.Gaganachukki())
-	// places.GET("/valleySchool", handler.Ganeshgudi())
-	// places.GET("/ganeshGudi", handler.ValleySchool())
 
 	app.GET("/admin/wildlife/upload", handler.AdminAPIWildlifeUpload())
 	app.GET("/admin/wildlife/place/upload", handler.AdminAPIWildlifePlaceUpload())
