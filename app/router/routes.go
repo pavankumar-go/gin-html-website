@@ -34,6 +34,11 @@ func StartServer(ctx context.Context, appPath string) {
 	})
 
 	app.GET("/", handler.HomePage())
+	app.GET("google274efb5cc3ae7647.html",
+		func(c *gin.Context) {
+			c.HTML(200, "google274efb5cc3ae7647.html", nil)
+		})
+		
 	app.GET("/home", handler.HomePage())
 	app.GET("/about", handler.About())
 	// app.GET("/blogs", handler.Blogs())
@@ -46,13 +51,12 @@ func StartServer(ctx context.Context, appPath string) {
 	wildlifePlaces.GET("/blr", handler.W_Places(1))
 	wildlifePlaces.GET("/mandya", handler.W_Places(2))
 	wildlifePlaces.GET("/jbr", handler.W_Places(3))
-	
+
 	// to add new route for a place
 	landscapePlaces := app.Group("/landscape/places")
 	landscapePlaces.GET("/blr", handler.L_Places(1))
 	landscapePlaces.GET("/mandya", handler.L_Places(2))
 	landscapePlaces.GET("/jbr", handler.L_Places(3))
-
 
 	app.GET("/admin/wildlife/upload", handler.AdminAPIWildlifeUpload())
 	app.GET("/admin/wildlife/place/upload", handler.AdminAPIWildlifePlaceUpload())
