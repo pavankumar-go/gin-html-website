@@ -19,6 +19,8 @@ func StartServer(ctx context.Context, appPath string) {
 	app.Use(gin.Logger())
 	app.Use(middleware.CORS())
 
+	app.StaticFile("/sitemap.xml", appPath+"/templates/sitemap.xml")
+
 	app.Static("static/css", appPath+"/static/css")
 	app.Static("static/fonts", appPath+"/static/fonts")
 	app.Static("scripts", appPath+"/scripts")
@@ -34,11 +36,6 @@ func StartServer(ctx context.Context, appPath string) {
 	})
 
 	app.GET("/", handler.HomePage())
-	app.GET("google274efb5cc3ae7647.html",
-		func(c *gin.Context) {
-			c.HTML(200, "google274efb5cc3ae7647.html", nil)
-		})
-		
 	app.GET("/home", handler.HomePage())
 	app.GET("/about", handler.About())
 	// app.GET("/blogs", handler.Blogs())
