@@ -48,12 +48,15 @@ func StartServer(ctx context.Context, appPath string) {
 	wildlifePlaces.GET("/blr", handler.W_Places(1))
 	wildlifePlaces.GET("/mandya", handler.W_Places(2))
 	wildlifePlaces.GET("/jbr", handler.W_Places(3))
+	wildlifePlaces.GET("/cauvery", handler.L_Places(4))
 
 	// to add new route for a place
 	landscapePlaces := app.Group("/landscape/places")
 	landscapePlaces.GET("/blr", handler.L_Places(1))
 	landscapePlaces.GET("/mandya", handler.L_Places(2))
 	landscapePlaces.GET("/jbr", handler.L_Places(3))
+	landscapePlaces.GET("/cauvery", handler.L_Places(4))
+
 
 	app.GET("/admin/wildlife/upload", handler.AdminAPIWildlifeUpload())
 	app.GET("/admin/wildlife/place/upload", handler.AdminAPIWildlifePlaceUpload())
