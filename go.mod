@@ -3,9 +3,9 @@ module github.com/gin-html-website
 go 1.17
 
 require (
-	github.com/gin-gonic/gin v1.7.4
+	github.com/gin-gonic/gin v1.7.7
 	github.com/joho/godotenv v1.4.0
-	github.com/prometheus/client_golang v1.11.0
+	github.com/prometheus/client_golang v1.11.1
 	gorm.io/driver/sqlite v1.1.6
 	gorm.io/gorm v1.21.16
 )
@@ -32,8 +32,8 @@ require (
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
 	github.com/ugorji/go/codec v1.2.6 // indirect
-	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
-	golang.org/x/sys v0.0.0-20211025112917-711f33c9992c // indirect
+	golang.org/x/crypto v0.0.0-20220314234659-1baeb1ce4c0b // indirect
+	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

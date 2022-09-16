@@ -19,6 +19,8 @@ function homeMenu(x) {
     if (openedMenu.style.display === "none") {
         openedMenu.style.display = "block";
         homeBackground.style.background = "black";
+        homeBackground.style.position = "absolute"
+        homeBackground.style.filter = "blur(2px)";
     } else {
         openedMenu.style.display = "none";
         homeBackground.style.background = "";

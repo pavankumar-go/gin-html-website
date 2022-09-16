@@ -50,18 +50,23 @@ func Gallery() gin.HandlerFunc {
 
 func WildlifePlaces() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// c.Header("max-age", "0")
-		// c.Header("Cache-Control", "no-cache")
-		places, err := controller.GetWildlifePlaces()
+
+		latestPlaces, err := controller.GetPlacesByLatestUploads()
 		if err != nil {
 			log.Println("failed to get places: ", err)
 			c.AbortWithStatusJSON(500, "failed to render")
 			return
 		}
 
-		var allPlaces types.WildlifePlaces
+		// places, err := controller.GetWildlifePlaces()
+		// if err != nil {
+		// 	log.Println("failed to get places: ", err)
+		// 	c.AbortWithStatusJSON(500, "failed to render")
+		// 	return
+		// } --> old
 
-		for _, place := range *places {
+		var allPlaces types.WildlifePlaces
+		for _, place := range *latestPlaces {
 			place.UpdatedAt = controller.GetLatestUploadDate(place.ID)
 			allPlaces.Place = append(allPlaces.Place, place)
 		}

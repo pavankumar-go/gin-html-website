@@ -20,7 +20,7 @@ func AddWildlifePlace(name, shortName string, file *multipart.FileHeader) (*mode
 		ShortName: shortName,
 	}
 
-	err := db.Create(place).Error
+	err := db.Create(place).Update("place_id", gorm.Expr("id")).Error
 	if err != nil {
 		log.Println("error adding place..", err)
 		return place, err
@@ -123,6 +123,18 @@ func GetWildlifePlaces() (*[]models.Place, error) {
 	db := database.GetDBConnection()
 	var places []models.Place
 	err := db.Find(&places).Error
+	if err != nil {
+		log.Println("error getting places..", err)
+		return nil, err
+	}
+
+	return &places, nil
+}
+
+func GetPlacesByLatestUploads() (*[]models.Place, error) {
+	db := database.GetDBConnection()
+	var places []models.Place
+	err := db.Raw("select places.*, max(birds.updated_at) from places join birds on birds.place_id = places.place_id group by birds.place_id order by birds.updated_at desc;").Scan(&places).Error
 	if err != nil {
 		log.Println("error getting places..", err)
 		return nil, err
