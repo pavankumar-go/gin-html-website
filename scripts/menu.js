@@ -23,6 +23,6 @@ function homeMenu(x) {
         homeBackground.style.filter = "blur(2px)";
     } else {
         openedMenu.style.display = "none";
-        homeBackground.style.backgroundImage = "";
+        homeBackground.style.background = "";
     }
 }
