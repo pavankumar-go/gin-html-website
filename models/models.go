@@ -1,6 +1,8 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type LandscapePlace struct {
 	gorm.Model
@@ -19,6 +21,7 @@ type Landscape struct {
 // TODO: migrate to WildlifePlace
 type Place struct {
 	gorm.Model
+	PlaceID   uint
 	Name      string
 	ShortName string
 	BGImg     string
