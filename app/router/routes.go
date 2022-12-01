@@ -2,8 +2,11 @@ package router
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -43,19 +46,20 @@ func StartServer(ctx context.Context, appPath string) {
 	app.GET("/wildlife/places", handler.WildlifePlaces())
 	app.GET("/landscape/places", handler.LandscapePlaces())
 
-	// to add new route for a place
-	wildlifePlaces := app.Group("/wildlife/places")
-	wildlifePlaces.GET("/blr", handler.W_Places(1))
-	wildlifePlaces.GET("/mandya", handler.W_Places(2))
-	wildlifePlaces.GET("/jbr", handler.W_Places(3))
-	wildlifePlaces.GET("/cauvery", handler.W_Places(4))
+	wildlifePlacesGrp := app.Group("/wildlife/places")
+	landscapePlacesGrp := app.Group("/landscape/places")
 
 	// to add new route for a place
-	landscapePlaces := app.Group("/landscape/places")
-	landscapePlaces.GET("/blr", handler.L_Places(1))
-	landscapePlaces.GET("/mandya", handler.L_Places(2))
-	landscapePlaces.GET("/jbr", handler.L_Places(3))
-	landscapePlaces.GET("/cauvery", handler.L_Places(4))
+	places := strings.Split(os.Getenv("PLACES"), ",")
+	if len(places) == 1 {
+		log.Fatalln("PLACES unset, no routes will be exposed.")
+	}
+
+	// to add new route for a place
+	for index, p := range places {
+		wildlifePlacesGrp.GET(fmt.Sprintf("/%s", p), handler.W_Places(index+1))
+		landscapePlacesGrp.GET(fmt.Sprintf("/%s", p), handler.L_Places(index+1))
+	}
 
 	app.GET("/admin/wildlife/upload", handler.AdminAPIWildlifeUpload())
 	app.GET("/admin/wildlife/place/upload", handler.AdminAPIWildlifePlaceUpload())

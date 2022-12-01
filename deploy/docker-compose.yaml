@@ -12,6 +12,7 @@ services:
     environment:
       - SECRET_PATH=/run/secrets/app_secret
       - HOST_ADDRESS=https://www.pavankumar.photography
+      - PLACES=blr,mandya,jbr,cauvery,jakarta
     secrets:
       - app_secret
     deploy:

@@ -9,10 +9,9 @@ RUN mkdir requirements \
   && cp -R templates requirements/ \
   && cp website requirements/
 
-FROM alpine:3.15
+FROM alpine:3.17
 RUN apk add --no-cache curl bash ca-certificates
 WORKDIR /opt/app/
 COPY --from=builder go/src/github.com/gin-html-website/requirements/ /opt/app/
-ARG APP_PATH
 ENV APP_PATH=/opt/app
 CMD ["./website"]
