@@ -210,3 +210,11 @@ body {
         letter-spacing: 1px;
     }
 }
+
+.social-media {
+    display: inline-flex;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(100% + 10px);
+  }
