@@ -15,7 +15,7 @@
 <body>
     <div class="nav-bar">
         <ul>
-            <li><img class="logo" src="/static/assets/images/signs/16.png" /></li>
+            <!-- <li><img class="logo" src="/static/assets/images/signs/16.png" /></li> -->
             <li class="flexMenu"><a href="/home">Home</a></li>
             <li class="active flexMenu"><a href="/gallery">Gallery</a></li>
             <li class="flexMenu"><a href="/about">About</a></li>
@@ -38,9 +38,9 @@
         </div>
     </div>
 
-    <div class="wrapper-grid" id="rest">
+    <div class="places-wrapper-grid" id="rest">
         {{ range .LandscapePlace}}
-        <div class="container" id="{{.ID}}" onclick="window.location.href='/landscape/places/{{.ShortName}}'"
+        <div class="places-container" id="{{.ID}}" onclick="window.location.href='/landscape/places/{{.ShortName}}'"
             style="background-image: url(/static/assets/images/places/landscapes/{{.BGImg}}); background-position: center; background-repeat: no-repeat; background-size: cover;">
             <p class="date">{{.UpdatedAt.Format "2006 Jan 02" }}</p>
             <h2>{{.Name}}</h2>

@@ -10,7 +10,7 @@ import (
 	"syscall"
 
 	"github.com/gin-html-website/app/router"
-	"github.com/gin-html-website/database"
+	// "github.com/gin-html-website/database"
 )
 
 func main() {
@@ -24,8 +24,8 @@ func main() {
 		cancel()
 	}()
 
-	db := database.GetDBConnection()
-	database.Migrate(db)
+	// db := database.GetDBConnection()
+	// database.Migrate(db)
 
 	appPath, ok := os.LookupEnv("APP_PATH")
 	if !ok {

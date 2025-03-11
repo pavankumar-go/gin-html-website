@@ -4,7 +4,7 @@
 
 :root {
     --clr-main: #ffb640;
-    --font-size: 16px;
+    --font-size: 18px;
     --border-radius: 0.2em;
 }
 
@@ -18,7 +18,7 @@
 
 body {
     margin: 0;
-    font-family: 'Trebuchet MS';
+    font-family: 'Arno Pro';
     font-size: var(--font-size);
     background-color: black;
     color: white;
@@ -144,8 +144,18 @@ body {
     margin-top: 3em;
 }
 
+.places-wrapper-grid {
+    display: block;
+    margin-top: 2em;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 0em;
+    column-gap: 1em;
+    margin: 1%;
+    margin-top: 3em;
+}
+
 .container {
-    cursor: pointer;
+    cursor: pointer;    
     margin-top: 2em;
     background-color: rgba(123, 122, 122, 0.234);
     border-radius: var(--border-radius);
@@ -154,7 +164,22 @@ body {
     height: 50vh;
 }
 
+.places-container {
+    cursor: pointer;
+    margin-top: 2em;
+    background-color: rgba(123, 122, 122, 0.234);
+    border-radius: var(--border-radius);
+    padding: 1em;
+    border-top: 4px solid var(--clr-main);
+    height: 100vh;
+}
+
 .container h2 {
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+}
+
+.places-container h2 {
     margin-top: 0.2em;
     margin-bottom: 0.5em;
 }

@@ -4,7 +4,7 @@
 
 :root {
     --clr-main: #ffb640;
-    --font-size: 16px;
+    --font-size: 18px;
     --border-radius: 0.2em;
 }
 
@@ -18,7 +18,7 @@
 
 body {
     margin: 0;
-    font-family: 'Trebuchet MS';
+    font-family: 'Arno Pro';
     font-size: var(--font-size);
     background-color: black;
     color: white;
@@ -120,8 +120,7 @@ body {
 }
 
 .nav-bar ul li.active a {
-    font-weight: bolder;
-    color: #ffb640;
+    text-decoration: underline;
 }
 
 .nav-bar ul li:first-child {

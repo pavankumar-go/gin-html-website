@@ -12,3 +12,10 @@
     font-weight: normal;
     src: local('Trebuchet MS Italic'), url('/static/fonts/Trebuchet-MS-Italic.woff') format('woff');
 }
+
+@font-face {
+    font-family: 'Arno Pro';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Arno Pro'), url('/static/fonts/ArnoPro-Regular.woff') format('woff');
+    }
