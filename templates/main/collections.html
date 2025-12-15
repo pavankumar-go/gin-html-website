@@ -14,7 +14,7 @@
 
 <script src="/scripts/base.js" async defer></script>
 
-<body style="height: 100%;">
+<body>
     <!-- mobile-header -->
     <header class="mobile-header">
         <div class="brand-name">Pavan Kumar Photography</div>
@@ -34,14 +34,13 @@
         </div>
         <nav>
             <ul class="nav-list">
-                <li><a onclick="showSection('home', true)" class="active" href="/home">Home</a></li>
-                <li><a onclick="showSection('collections', true)" href="/gallery">Collections</a></li>
+                <li><a onclick="showSection('home', true)"  href="/home">Home</a></li>
+                <li><a onclick="showSection('collections',true)" class="active" href="/gallery">Collections</a></li>
                 <li><a onclick="showSection('about', true)" href="/about">About</a></li>
             </ul>
         </nav>
     </div>
 
-    <!-- desktop-header -->
     <aside>
         <div>
             <div class="brand-name">
@@ -51,9 +50,8 @@
             <nav>
                 <ul class="nav-list">
                     <li><a onclick="showSection('home')" id="link-home" href="/home">Home</a></li>
-                    <li><a onclick="showSection('collections')" id="link-collections" href="/gallery">Collections</a>
-                    </li>
-                    <li><a onclick="showSection('about')" id="link-about" class="active" href="/about">About</a></li>
+                    <li><a onclick="showSection('collections')" id="link-collections" class="active" href="/gallery">Collections</a></li>
+                    <li><a onclick="showSection('about')" id="link-about" href="/about">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -63,19 +61,17 @@
         </div>
     </aside>
     <main>
-        <section id="about" class="active">
-            <div class="about-layout">
-                <div>
-                <h3>Hi! I'm Pavan</h3>
-                <p>I would love to share my captures of beautiful birds with you all and hope to inspire
-                    visitors to this site :)</p>
-                <p>
-                    I am a DevOps engineer and hobbyist photographer based in Bengaluru.<br>
-                    My primary photographic interest lies in capturing the behaviors and beauty of bird species, but I also enjoy shooting landscapes and macro subjects. This website is a simple medium to share my enjoyment and showcase my photography.
-                </p>
-            </div>
 
-            <div class="about-me-image"><img src="/static/assets/images/about-me.jpeg"></div>
+        <section id="collections" class="active">
+            <div class="gallery-grid">
+                {{ range .Place}}
+                <div class="gallery-item" onclick="window.location.href='/wildlife/places/{{.ShortName}}'">
+                    <img src="/static/assets/images/places/wildlife/{{.BGImg}}"
+                        alt="{{.Name}}">
+                    <div class="gallery-caption">{{.Name}}</div>
+                </div>
+                {{end}}
+            </div>
         </section>
     </main>
 </body>

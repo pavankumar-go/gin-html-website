@@ -35,3 +35,4 @@ type Bird struct {
 	PlaceID uint
 	Quality int
 }
+

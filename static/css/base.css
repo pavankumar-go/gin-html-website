@@ -1,0 +1,487 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Exact match for the typewriter/monospace font style */
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* --- SIDEBAR NAVIGATION (DESKTOP) --- */
+aside {
+    width: 260px;
+    padding: 100px 60px;
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.brand-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    margin-bottom: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+nav a:hover,
+nav a.active {
+    text-decoration: underline;
+}
+
+.copyright {
+    font-size: 7px;
+    color: #666;
+}
+
+/* --- MAIN CONTENT AREA --- */
+main {
+    margin-left: 260px;
+    /* Desktop: Space for sidebar */
+    padding: 100px 20px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* Sections (Hidden by default, shown via JS) */
+section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    line-height: 1.2;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+
+/* --- HOME PAGE STYLES --- */
+.hero-image-container {
+    margin-bottom: 30px;
+}
+
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.slideshow {
+    position: absolute;
+    inset: 0;
+    /* top:0; right:0; bottom:0; left:0 */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slideshow.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+
+.home-caption {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 40px;
+    display: block;
+}
+
+.home-columns {
+    top: 80px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- GALLERY GRID (DEFAULT: 3 COLUMNS FOR DESKTOP) --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Default desktop 3 columns */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+}
+
+.gallery-caption {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.small-tag {
+    background-color: #ccc;
+    color: #000;
+    font-size: 10px;
+    padding: 2px 5px;
+    margin-left: 5px;
+}
+
+/* --- BIG IMAGE LAYOUT --- */
+.big-image-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.big-image-layout img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-caption-small {
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-me-image img {
+    position: relative;
+    width: 450px;
+    height: auto;
+}
+
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    /* Must be higher than everything else */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+    /* White background matching screenshot */
+}
+
+.lightbox-content-wrapper {
+    max-width: 90%;
+    max-height: 90vh;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lightbox-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.lightbox-header .brand-name {
+    margin: 0;
+    padding-left: 40px;
+}
+
+.close-lightbox {
+    color: #000;
+    font-size: 60px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    top: 5px;
+    right: 40px;
+}
+
+.lightbox-image {
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* Positioning for the full view */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 101;
+    /* Above the image */
+    padding: 20px;
+    color: #000;
+    font-size: 40px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    background: none;
+    border: none;
+    font-family: inherit;
+}
+
+#prevButton {
+    left: 0;
+    font-size: 36px;
+}
+
+#nextButton {
+    right: 0;
+    font-size: 36px;
+}
+
+.lightbox-nav:hover {
+    color: #333;
+}
+
+/* --- MOBILE HEADER & MENU --- */
+.mobile-header {
+    display: none;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 15vh;
+    padding: 20px;
+    background: #fff;
+    z-index: 20;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+/* Mobile menu styles remain the same as previous version */
+.menu-icon {
+    top: 10px;
+    cursor: pointer;
+    width: 30px;
+    height: 15px;
+    position: relative;
+}
+
+.menu-icon span {
+    display: block;
+    position: absolute;
+    height: 1.5px;
+    width: 100%;
+    background: #000;
+    border-radius: 9px;
+    transition: .25s ease-in-out;
+}
+
+.menu-icon span:nth-child(1) {
+    top: 0px;
+}
+
+.menu-icon span:nth-child(2) {
+    top: 10px;
+}
+
+.close-icon {
+    position: relative;
+    top: -30px;
+    font-size: 70px;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+.mobile-header {
+    display: none;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    z-index: 20;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 30;
+    padding: 20px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+}
+
+.mobile-menu-overlay nav a {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-items: flex-start;
+}
+
+
+/* --- MOBILE MEDIA QUERY (SCREEN WIDTH < 900px) --- */
+@media (max-width: 900px) {
+    aside {
+        display: none;
+    }
+
+    .mobile-header {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .brand-name {
+        font-size: 22px;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 0px;
+    }
+
+    .home-columns,
+    .about-layout,
+    .big-image-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 30px;
+        margin: 30px;
+        margin-top: -70px;
+    }
+
+    /* Gallery grid for mobile (2 columns) */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-image {
+        height: 500px;
+        width: 100%;
+    }
+
+    /* Adjust lightbox header for mobile */
+    .lightbox-header .brand-name {
+        display: none;
+    }
+
+    .close-lightbox {
+        right: 20px;
+    }
+
+    .lightbox-nav {
+        font-size: 24px;
+        padding: 1px;
+    }
+
+    .about-layout {
+        padding: 0px;
+        gap: 0px;
+    }
+
+    .about-me-image img {
+        width: 60%;
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

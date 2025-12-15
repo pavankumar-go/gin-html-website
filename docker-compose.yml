@@ -1,0 +1,43 @@
+services:
+  website:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./website-data/website.db:/opt/app/website.db
+      - ./website-data/places:/opt/app/static/assets/images/places
+    restart: always
+    environment:
+      - SECRET_PATH=/run/secrets/app_secret
+      - HOST_ADDRESS=https://www.anything.photo
+      - PLACES=blr,mandyamysuru,jbr,cauvery,jakarta,thattekad,ramanagar,thirthahalli,andaman,bandipur,chikkaballapur,dandeli,corbett,munnar,malaysia,vietnam
+    secrets:
+      - app_secret
+    deploy:
+      replicas: 1
+  # nginx:
+  #   image: nginx:1.26-alpine
+  #   restart: always
+  #   volumes:
+  #     - ./public:/var/www/html
+  #     - ./conf.d:/etc/nginx/conf.d
+  #     - ./certbot/conf:/etc/nginx/ssl
+  #     - ./certbot/data:/var/www/certbot
+  #   depends_on:
+  #     - website
+  #     - certbot
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  # certbot:
+  #   image: certbot/certbot
+  #   #command: certonly --webroot --webroot-path=/var/www/certbot --email pavankumarn6997@gmail.com --agree-tos --no-eff-email -d anything.photo -d www.anything.photo
+  #   command: certonly --standalone --preferred-challenges http -d anything.photo -d www.anything.photo
+  #   network_mode: host
+  #   volumes:
+  #       - ./certbot/conf:/etc/letsencrypt
+  #       - ./certbot/logs:/var/log/letsencrypt
+  #       - ./certbot/data:/var/www/certbot
+secrets:
+  app_secret:
+    file: .env

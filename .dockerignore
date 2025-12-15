@@ -7,3 +7,4 @@ gin-html-website
 .gitignore
 .git*
 deploy/.env
+**/.DS_STORE

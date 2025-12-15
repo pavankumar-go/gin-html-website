@@ -24,37 +24,34 @@ services:
         reservations:
           cpus: '0.100'
           memory: 100M
-  nginx:
-    image: nginx:1.23-alpine
-    restart: on-failure
-    volumes:
-      - ./public:/var/www/html
-      - ./conf.d:/etc/nginx/conf.d
-      - ./certbot/conf:/etc/nginx/ssl
-      - ./certbot/data:/var/www/certbot
-    deploy:
-      resources:
-        limits:
-          cpus: '0.200'
-          memory: 200M
-        reservations:
-          cpus: '0.100'
-          memory: 100M
-    depends_on:
-      - website
-    ports:
-      - 80:80
-      - 443:443
-  certbot:
-    image: certbot/certbot:arm64v8-v2.0.0
-    command: certonly --webroot --webroot-path=/var/www/certbot --email pavankumarn6997@gmail.com --agree-tos --no-eff-email -d pavankumar.photography -d www.pavankumar.photography
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/logs:/var/log/letsencrypt
-      - ./certbot/data:/var/www/certbot
+  # nginx:
+  #   image: nginx:1.23-alpine
+  #   restart: on-failure
+  #   volumes:
+  #     - ./public:/var/www/html
+  #     - ./conf.d:/etc/nginx/conf.d
+  #     - ./certbot/conf:/etc/nginx/ssl
+  #     - ./certbot/data:/var/www/certbot
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.200'
+  #         memory: 200M
+  #       reservations:
+  #         cpus: '0.100'
+  #         memory: 100M
+  #   depends_on:
+  #     - website
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  # certbot:
+  #   image: certbot/certbot:arm64v8-v2.0.0
+  #   command: certonly --webroot --webroot-path=/var/www/certbot --email pavankumarn6997@gmail.com --agree-tos --no-eff-email -d pavankumar.photography -d www.pavankumar.photography
+  #   volumes:
+  #     - ./certbot/conf:/etc/letsencrypt
+  #     - ./certbot/logs:/var/log/letsencrypt
+  #     - ./certbot/data:/var/www/certbot
 secrets:
   app_secret:
     file: .env
-
-volumes:
-  website-data-1.2.3:

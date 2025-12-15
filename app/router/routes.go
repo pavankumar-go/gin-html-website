@@ -22,7 +22,7 @@ func StartServer(ctx context.Context, appPath string) {
 	app.Use(gin.Logger())
 	app.Use(middleware.CORS())
 
-	app.StaticFile("/sitemap.xml", appPath+"/templates/sitemap.xml")
+	app.StaticFile("/sitemap.xml", appPath+"/sitemap.xml")
 
 	app.Static("static/css", appPath+"/static/css")
 	app.Static("static/fonts", appPath+"/static/fonts")
@@ -38,12 +38,12 @@ func StartServer(ctx context.Context, appPath string) {
 		c.JSON(200, gin.H{"service": "up"})
 	})
 
-	app.GET("/", handler.HomePage())
-	app.GET("/home", handler.HomePage())
+	app.GET("/", handler.HomePage(appPath))
+	app.GET("/home", handler.HomePage(appPath))
 	app.GET("/about", handler.About())
 	// app.GET("/blogs", handler.Blogs())
 	app.GET("/gallery", handler.Gallery())
-	app.GET("/wildlife/places", handler.WildlifePlaces())
+	// app.GET("/wildlife/places", handler.WildlifePlaces())
 	app.GET("/landscape/places", handler.LandscapePlaces())
 
 	wildlifePlacesGrp := app.Group("/wildlife/places")

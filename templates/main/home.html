@@ -5,46 +5,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta property="og:title" content="Pavan Kumar Photography">
-    <meta name="image" property="og:image" content="https://www.pavankumar.photography/static/assets/images/places/wildlife/6/459.jpg">
+    <meta name="image" property="og:image"
+        content="https://www.pavankumar.photography/static/assets/images/places/wildlife/6/459.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/home.css">
-    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/base.css">
     <title>Pavan Kumar Photography</title>
 </head>
 
-<script src="/scripts/menu-v1.js" async defer></script>
+<script src="/scripts/base.js" async defer></script>
+<script src="/scripts/slideshow.js" async defer></script>
 
-<body id="bimg">
-    <div class="nav-bar">
-        <ul>
-            <li><img class="logo" src="/static/assets/images/signs/16.png" /></li>
-            <li class="active flexMenu"><a href="/home">Home</a></li>
-            <li class="flexMenu"><a href="/gallery">Gallery</a></li>
-            <li class="flexMenu"><a href="/about">About</a></li>
-
-            <li class="hamburgerMenu">
-                <div onclick="homeMenu(this)">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                <div>
-            </li>
-        </ul>
-    </div>
-
-    <div class="openedMenu" id="openedMenu" style="display: none;">
-        <div class="menuContainer">
-            <div class="menuItems"><a class="active" href="/home">Home</a></div>
-            <div class="menuItems"><a href="/gallery">Gallery</a></div>
-            <div class="menuItems"><a href="/about">About</a></div>
+<body>
+    <!-- mobile-header -->
+    <header class="mobile-header">
+        <div class="brand-name">Pavan Kumar Photography</div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
         </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <div class="menu-header">
+            <div class="brand-name">Pavan Kumar Photography</div>
+            <div class="close-icon" onclick="toggleMenu()">&times;</div>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a onclick="showSection('home', true)" class="active" href="/home">Home</a></li>
+                <li><a onclick="showSection('collections', true)" href="/gallery">Collections</a></li>
+                <li><a onclick="showSection('about', true)" href="/about">About</a></li>
+            </ul>
+        </nav>
     </div>
 
-    <div class="wrapper-grid" id="rest">
-        <p class="main-logo">Pavan Kumar <br> Wildlife Photography</p>
-    </div>
+    <!-- desktop-header -->
+    <aside>
+        <div>
+            <div class="brand-name">
+                Pavan Kumar<br>
+                Photography
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li><a onclick="showSection('home')" class="active" id="link-home" href="/home">Home</a></li>
+                    <li><a onclick="showSection('collections')" id="link-collections" href="/gallery">Collections</a>
+                    </li>
+                    <li><a onclick="showSection('about')" id="link-about" href="/about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="copyright">
+            &copy; Copyright 2025 Pavan Kumar<br>
+            Photography
+        </div>
+    </aside>
+    <main>
 
-    <div class="backgroundimg"></div>
+        <section id="home" class="active">
+            <div class="hero-image">
+            {{ range . }}
+            <div class="slideshow">
+                <img src="{{ . }}">
+            </div>
+            {{end}}
+            </div>
+
+            <div class="home-columns">
+                <div>
+                    <h2>Photographic Focus</h2>
+                    <p>My work primarily focuses on Avian Behavior, where I strive to observe and capture the personalities of local and migratory bird species.</p>
+                    <p>I also dedicate time to Landscapes, capturing the vast, dynamic beauty of nature, and Macro Photography, exploring the tiny, intricate details of the natural world.</p>
+                </div>
+                <div>
+                    <h2>Featured Collection</h2>
+                    <p>Discover my Collections gallery, featuring my latest photographic series from around Bengaluru and recent travel destinations.</p>
+                    <p>This is where I showcase new macro studies and recent work on high-speed bird photography techniques. Click through to view the full gallery.</p>
+                </div>
+                <div>
+                    <h2>Inquiries & Prints</h2>
+                    <p>I manage print sales and commissions during my personal time.</p>
+                    <p>If you are interested in ordering a print, licensing an image, <a href="mailto:pavankumarn6997@gmail.com">please click here to send a message.</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
