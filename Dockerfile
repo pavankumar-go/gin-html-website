@@ -11,7 +11,7 @@ RUN mkdir requirements \
 
 RUN cp website requirements/
 
-FROM alpine:3.21
+FROM alpine:3.23.2
 RUN apk add curl bash ca-certificates
 WORKDIR /opt/app/
 COPY --from=builder go/src/github.com/gin-html-website/requirements/ /opt/app/
