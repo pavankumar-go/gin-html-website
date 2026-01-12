@@ -44,10 +44,10 @@ func StartServer(ctx context.Context, appPath string) {
 	// app.GET("/blogs", handler.Blogs())
 	app.GET("/gallery", handler.Gallery())
 	// app.GET("/wildlife/places", handler.WildlifePlaces())
-	app.GET("/landscape/places", handler.LandscapePlaces())
+	// app.GET("/landscape/places", handler.LandscapePlaces())
 
 	wildlifePlacesGrp := app.Group("/wildlife/places")
-	landscapePlacesGrp := app.Group("/landscape/places")
+	// landscapePlacesGrp := app.Group("/landscape/places")
 
 	// to add new route for a place
 	places := strings.Split(os.Getenv("PLACES"), ",")
@@ -58,31 +58,27 @@ func StartServer(ctx context.Context, appPath string) {
 	// to add new route for a place
 	for index, p := range places {
 		wildlifePlacesGrp.GET(fmt.Sprintf("/%s", p), handler.W_Places(index+1))
-		landscapePlacesGrp.GET(fmt.Sprintf("/%s", p), handler.L_Places(index+1))
+		// landscapePlacesGrp.GET(fmt.Sprintf("/%s", p), handler.L_Places(index+1))
 	}
 
 	app.GET("/admin/wildlife/upload", handler.AdminAPIWildlifeUpload())
 	app.GET("/admin/wildlife/place/upload", handler.AdminAPIWildlifePlaceUpload())
 	app.GET("/admin/wildlife/place/update", handler.AdminAPIWildlifePlacePatch())
 
-	app.GET("/admin/landscape/upload", handler.AdminAPILandscapeUpload())
-	app.GET("/admin/landscape/place/upload", handler.AdminAPILandscapePlaceUpload())
-	app.GET("/admin/landscape/place/update", handler.AdminAPILandscapePlacePatch())
+	// app.GET("/admin/landscape/upload", handler.AdminAPILandscapeUpload())
+	// app.GET("/admin/landscape/place/upload", handler.AdminAPILandscapePlaceUpload())
+	// app.GET("/admin/landscape/place/update", handler.AdminAPILandscapePlacePatch())
 
 	adminAPI := app.Group("/v1")
 	adminAPI.Use(middleware.Auth())
 	adminAPI.POST("/wildlife/upload", api.AddBird())
-	adminAPI.POST("/landscape/upload", api.AddLandscape())
+	// adminAPI.POST("/landscape/upload", api.AddLandscape())
 
 	// adminAPI.DELETE("/bird/:birdId/place/:placeId", api.AddPlace()) - refer handler comments frontend.go
 
 	adminAPI.POST("/place/wildlife/create", api.AddWildlifePlace())
 	adminAPI.POST("/place/wildlife/delete", api.DeleteWildlifePlace())
-	adminAPI.POST("/place/wildlife/update", api.UpdateWildlifePlace())
-
-	adminAPI.POST("/place/landscape/create", api.AddLandscapePlace())
-	adminAPI.POST("/place/landscape/delete", api.DeleteLandscapePlace())
-	adminAPI.POST("/place/landscape/update", api.UpdateLandscapePlace())
+	// adminAPI.POST("/place/wildlife/update", api.UpdateWildlifePlace())
 	// 404 route
 
 	server := &http.Server{

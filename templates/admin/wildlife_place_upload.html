@@ -8,7 +8,9 @@
     <title>PKP Admin</title>
 </head>
 
-<body>
+<!-- <script type="text/javascript" src="/scripts/no-print.js" async defer></script>  -->
+
+<body oncontextmenu="return false;" ondragstart="return false;">
     <h1>Add Wildlife Place</h1>
     <form enctype="multipart/form-data" action="{{ .Host }}/v1/place/wildlife/create" method="POST">
         <label for="name">Place Name:</label>

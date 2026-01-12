@@ -1,33 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PKP Admin</title>
+    <title>PKP Admin - Custom Multi-Upload</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; max-width: 900px; margin: 20px auto; padding: 20px; background: #f8f9fa; color: #333; }
+        .setup-card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; }
+        .image-list { display: flex; flex-direction: column; gap: 15px; }
+        .upload-item { 
+            background: white; padding: 15px; border-radius: 10px; 
+            display: grid; grid-template-columns: 120px 1fr 1fr 120px;
+            align-items: center; gap: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid #007bff;
+        }
+        .upload-item img { width: 120px; height: 90px; object-fit: cover; border-radius: 6px; }
+        .field-group { display: flex; flex-direction: column; gap: 5px; }
+        label { font-size: 0.85rem; font-weight: bold; color: #666; }
+        input { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+        
+        .status-pill { padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; text-align: center; font-weight: 600; background: #eee; }
+        .uploading { background: #cfe2ff; color: #084298; }
+        .success { background: #d1e7dd; color: #0f5132; }
+        .error { background: #f8d7da; color: #842029; }
+        
+        #startBtn { background: #007bff; color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: bold; width: 100%; margin-top: 20px; }
+        #startBtn:disabled { background: #ccc; cursor: not-allowed; }
+    </style>
 </head>
 
-<body>
-    <h1>Upload Wildlife Image</h1>
-    <form enctype="multipart/form-data" action="{{ .Host }}/v1/wildlife/upload" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
+<!-- <script type="text/javascript" src="/scripts/no-print.js" async defer></script> -->
 
-        <label for="image">Image:</label>
-        <input type="file" id="image" name="image" accept="image/*"><br><br>
+<body oncontextmenu="return false;" ondragstart="return false;">
 
-        <label for="place_id">Place ID:</label>
-        <input type="text" id="place_id" name="place_id"><br><br>
+    <div class="setup-card">
+        <h2>1. Batch Setup</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div class="field-group">
+                <label>Place ID (Global)</label>
+                <input type="text" id="global_place" placeholder="e.g. KRNP-01">
+            </div>
+            <div class="field-group">
+                <label>Quality (Default)</label>
+                <input type="text" id="global_quality" placeholder="e.g. 4K">
+            </div>
+            <div class="field-group">
+                <label>Access Key (Required)</label>
+                <input type="password" id="password" placeholder="Enter password...">
+            </div>
+        </div>
+        <input type="file" id="filePicker" accept="image/*" multiple>
+    </div>
 
-        <label for="quality">Quality</label>
-        <input type="text" id="quality" name="quality"><br><br>
+    <div id="imageList" class="image-list">
+        </div>
 
-        <label for="password">Key</label>
-        <input type="password" id="password" name="password"><br><br>
+    <button id="startBtn" style="display: none;">Upload Images One-by-One</button>
 
-        <input type="submit" value="Upload">
-    </form>
+    <script>
+        const filePicker = document.getElementById('filePicker');
+        const imageList = document.getElementById('imageList');
+        const startBtn = document.getElementById('startBtn');
+        let filesArray = [];
+
+        filePicker.addEventListener('change', (e) => {
+            imageList.innerHTML = '';
+            filesArray = Array.from(e.target.files);
+            
+            if (filesArray.length > 0) startBtn.style.display = 'block';
+
+            const defaultQual = document.getElementById('global_quality').value;
+
+            filesArray.forEach((file, i) => {
+                const row = document.createElement('div');
+                row.className = 'upload-item';
+                const url = URL.createObjectURL(file);
+                const cleanName = file.name.replace(/\.[^/.]+$/, "");
+
+                row.innerHTML = `
+                    <img src="${url}">
+                    <div class="field-group">
+                        <label>Image Name</label>
+                        <input type="text" id="name-${i}" value="${cleanName}">
+                    </div>
+                    <div class="field-group">
+                        <label>Quality</label>
+                        <input type="text" id="quality-${i}" value="${defaultQual}">
+                    </div>
+                    <div id="status-${i}" class="status-pill">Ready</div>
+                `;
+                imageList.appendChild(row);
+            });
+        });
+
+        startBtn.addEventListener('click', async () => {
+            const pass = document.getElementById('password').value;
+            if (!pass) return alert("Please enter your Key!");
+
+            startBtn.disabled = true;
+            const globalPlace = document.getElementById('global_place').value;
+
+            for (let i = 0; i < filesArray.length; i++) {
+                const statusDiv = document.getElementById(`status-${i}`);
+                statusDiv.textContent = "Uploading...";
+                statusDiv.className = "status-pill uploading";
+
+                const formData = new FormData();
+                formData.append('image', filesArray[i]);
+                formData.append('password', pass);
+                formData.append('place_id', globalPlace);
+                // Get specific values for THIS image
+                formData.append('name', document.getElementById(`name-${i}`).value);
+                formData.append('quality', document.getElementById(`quality-${i}`).value);
+
+                try {
+                    const res = await fetch("{{ .Host }}/v1/wildlife/upload", {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (res.ok) {
+                        statusDiv.textContent = "Done";
+                        statusDiv.className = "status-pill success";
+                    } else {
+                        statusDiv.textContent = `Error ${res.status}`;
+                        statusDiv.className = "status-pill error";
+                    }
+                } catch (err) {
+                    statusDiv.textContent = "Failed";
+                    statusDiv.className = "status-pill error";
+                }
+            }
+
+            startBtn.disabled = false;
+            startBtn.textContent = "All Uploads Finished";
+        });
+    </script>
 </body>
-
 </html>

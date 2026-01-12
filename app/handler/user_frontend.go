@@ -80,7 +80,7 @@ func Gallery() gin.HandlerFunc {
 // wildlife in places handlers...
 func W_Places(placeID int) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		birds, err := controller.GetBirds(placeID)
+		birds, err := controller.GetImages(placeID)
 		if err != nil {
 			log.Println("failed to get places: ", err)
 			c.AbortWithStatusJSON(500, "failed to render")
@@ -98,59 +98,6 @@ func W_Places(placeID int) gin.HandlerFunc {
 		if err != nil {
 			log.Println("failed to render birds: ", err)
 			c.AbortWithStatusJSON(500, "failed to render birds")
-			return
-		}
-	}
-}
-
-// TODO: update
-func LandscapePlaces() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		places, err := controller.GetLandscapePlaces()
-		if err != nil {
-			log.Println("failed to get places: ", err)
-			c.AbortWithStatusJSON(500, "failed to render")
-			return
-		}
-
-		var allPlaces types.LandscapePlaces
-
-		for _, place := range *places {
-			place.UpdatedAt = controller.GetLatestUploadDateForLandscape(place.ID)
-			allPlaces.LandscapePlace = append(allPlaces.LandscapePlace, place)
-		}
-
-		tmpl := template.Must(template.ParseFiles("templates/main/landscape_places.html"))
-		err = tmpl.Execute(c.Writer, allPlaces)
-		if err != nil {
-			log.Println("failed to render: ", err)
-			c.AbortWithStatusJSON(500, "failed to render")
-			return
-		}
-	}
-}
-
-// wildlife in places handlers...
-func L_Places(placeID int) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		landscapes, err := controller.GetLandscapes(placeID)
-		if err != nil {
-			log.Println("failed to get places: ", err)
-			c.AbortWithStatusJSON(500, "failed to render")
-			return
-		}
-
-		allLandscapes := types.Landscapes{
-			Landscape: *landscapes,
-		}
-
-		// NOTE: this should pre-exist corresponds to models.ShortName
-		// Even API should comply to this shortName /places/landscape/<shortName>
-		tmpl := template.Must(template.ParseFiles("templates/main/places/landscapes/common.html"))
-		err = tmpl.Execute(c.Writer, allLandscapes)
-		if err != nil {
-			log.Println("failed to render landscapes: ", err)
-			c.AbortWithStatusJSON(500, "failed to render landscapes")
 			return
 		}
 	}

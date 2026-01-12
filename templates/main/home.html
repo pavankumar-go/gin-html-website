@@ -15,7 +15,7 @@
 <script src="/scripts/base.js" async defer></script>
 <script src="/scripts/slideshow.js" async defer></script>
 
-<body>
+<body oncontextmenu="return false;" ondragstart="return false;">
     <!-- mobile-header -->
     <header class="mobile-header">
         <div class="brand-name">Pavan Kumar Photography</div>
@@ -66,7 +66,7 @@
             <div class="hero-image">
             {{ range . }}
             <div class="slideshow">
-                <img src="{{ . }}">
+                <img src="{{ . }}" oncontextmenu="return false;" ondragstart="return false;">
             </div>
             {{end}}
             </div>

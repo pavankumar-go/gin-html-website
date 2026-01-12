@@ -36,11 +36,12 @@ function openLightbox(clickedItem) {
     currentGallery = Array.from(galleryElement.querySelectorAll('.gallery-item'));
     currentIndex = currentGallery.indexOf(clickedItem);
 
-    const imgSrc = clickedItem.querySelector('img').src;
+    // const imgSrc = clickedItem.querySelector('img').src;
+    const fullResImg = clickedItem.getAttribute('data-full');
     const lightbox = document.getElementById('imageLightbox');
     const lightboxImage = document.getElementById('lightboxImage');
 
-    lightboxImage.src = imgSrc;
+    lightboxImage.src = fullResImg;
     lightbox.style.display = 'block';
     document.body.style.overflow = 'hidden';
 

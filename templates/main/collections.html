@@ -14,7 +14,9 @@
 
 <script src="/scripts/base.js" async defer></script>
 
-<body>
+<!-- <script type="text/javascript" src="/scripts/no-print.js" async defer></script> -->
+
+<body oncontextmenu="return false;" ondragstart="return false;">
     <!-- mobile-header -->
     <header class="mobile-header">
         <div class="brand-name">Pavan Kumar Photography</div>
@@ -66,8 +68,12 @@
             <div class="gallery-grid">
                 {{ range .Place}}
                 <div class="gallery-item" onclick="window.location.href='/wildlife/places/{{.ShortName}}'">
-                    <img src="/static/assets/images/places/wildlife/{{.BGImg}}"
-                        alt="{{.Name}}">
+                    <img src="/static/assets/images/places/wildlife{{.BGImg}}"
+                        alt="{{.Name}}"
+                        loading="lazy"
+                        decoding="async"
+                        oncontextmenu="return false;" 
+                        ondragstart="return false;">
                     <div class="gallery-caption">{{.Name}}</div>
                 </div>
                 {{end}}

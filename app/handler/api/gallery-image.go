@@ -12,11 +12,11 @@ import (
 func AddBird() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
-		birdName, ok := c.GetPostForm("name")
+		imgName, ok := c.GetPostForm("name")
 		if !ok {
-			log.Println("bird name missing")
+			log.Println("image name missing")
 			c.JSON(http.StatusBadRequest, gin.H{
-				"message": "Missing Bird Name",
+				"message": "Missing Image Name",
 			})
 			return
 		}
@@ -66,11 +66,11 @@ func AddBird() gin.HandlerFunc {
 			return
 		}
 
-		log.Println("saving bird image: ", birdName, "with place ID", placeID)
-		bird, cErr := controller.AddBird(birdName, uint(placeID), fileHeader, quality)
+		log.Println("saving image: ", imgName, "with place ID", placeID)
+		image, cErr := controller.AddImage(imgName, uint(placeID), fileHeader, quality)
 		if cErr != nil {
-			log.Println("error occured while adding bird: cleanup in progress: ", err)
-			deletedBird, err := controller.RemoveBird(bird.ID)
+			log.Println("error occured while adding image: cleanup in progress: ", err)
+			deletedBird, err := controller.RemoveImage(image.ID)
 			if err != nil {
 				c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 					"message": "request was unsuccessful, cleanup failed too",
@@ -79,14 +79,14 @@ func AddBird() gin.HandlerFunc {
 			}
 			log.Println("cleanup completed..", deletedBird)
 
-			log.Println("bird image saving had failed: ", cErr)
+			log.Println("image saving had failed: ", cErr)
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 				"message": cErr.Error(),
 			})
 			return
 		}
 
-		log.Println("bird image saved..", bird)
-		c.JSON(200, "bird image upload complete")
+		log.Println("image saved..", image)
+		c.JSON(200, "image upload complete")
 	}
 }

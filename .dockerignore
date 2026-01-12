@@ -3,6 +3,7 @@ TODO
 vendor
 static/assets/images/places/*
 tmp/*
+website-data/*
 gin-html-website
 .gitignore
 .git*

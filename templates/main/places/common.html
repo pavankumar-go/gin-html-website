@@ -15,13 +15,15 @@
 
 <script src="/scripts/base.js" async defer></script>
 
-<body>
+<!-- <script type="text/javascript" src="/scripts/no-print.js" async defer></script>  -->
+
+<body oncontextmenu="return false;" ondragstart="return false;">
     <div id="imageLightbox" class="lightbox" onclick="closeLightbox(event)">
         <div class="lightbox-header">
             <div class="brand-name">Pavan Kumar Photography</div>
             <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
         </div>
-        <img class="lightbox-image" id="lightboxImage" src="" alt="">
+        <img class="lightbox-image" id="lightboxImage" src="" alt="" oncontextmenu="return false;" ondragstart="return false;">
         <button id="prevButton" class="lightbox-nav" onclick="navigateLightbox('prev')"><i class="fa fa-angle-left"></i></button>
         <button id="nextButton" class="lightbox-nav" onclick="navigateLightbox('next')"><i class="fa fa-angle-right"></i></button>
     </div>
@@ -74,12 +76,32 @@
     </aside>
     <main>
 
-        <section id="collections" class="active">
+        <!-- <section id="collections" class="active">
             <div class="gallery-grid">
                 {{ range .Bird}}
                 <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="/static/assets/images/places/wildlife/{{.PlaceID}}/{{.ID}}.jpg" alt="{{.Name}}"
-                        loading="lazy">
+                        loading="lazy"
+                        decoding="async"
+                        oncontextmenu="return false;" 
+                        ondragstart="return false;">
+                    <div class="gallery-caption">{{.Name}}&thinsp;</div>
+                </div>
+                {{end}}
+            </div>
+        </section> -->
+        <section id="collections" class="active">
+            <div class="gallery-grid">
+                {{ range .Bird}}
+                <div class="gallery-item" 
+                     onclick="openLightbox(this)" 
+                     data-full="/static/assets/images/places/wildlife/{{.PlaceID}}/{{.ID}}.jpg">
+
+                    <img src="/static/assets/images/places/wildlife/{{.PlaceID}}/{{.ID}}_thumb.jpg" 
+                         alt="{{.Name}}"
+                         loading="lazy"
+                         decoding="async">
+
                     <div class="gallery-caption">{{.Name}}&thinsp;</div>
                 </div>
                 {{end}}
