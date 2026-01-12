@@ -1,5 +1,5 @@
 FROM golang:1.17-alpine AS builder
-RUN apk add git ca-certificates g++
+RUN apk add git ca-certificates g++ pkgconf vips vips-dev glib glib-dev
 
 WORKDIR $GOPATH/src/github.com/gin-html-website
 COPY . .
@@ -13,7 +13,7 @@ RUN mkdir requirements \
 RUN cp website requirements/
 
 FROM alpine:3.21
-RUN apk add curl bash ca-certificates
+RUN apk add curl bash ca-certificates pkgconf vips vips-dev glib glib-dev
 WORKDIR /opt/app/
 COPY --from=builder go/src/github.com/gin-html-website/requirements/ /opt/app/
 ENV APP_PATH=/opt/app

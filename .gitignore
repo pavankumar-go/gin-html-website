@@ -8,7 +8,7 @@ tmp/*
 gin-html-website
 deploy/.env
 *.zip
-*.jpg
+# *.jpg
 *.png
 **.DS_Store**
 website-data/*
