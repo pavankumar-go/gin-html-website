@@ -3,7 +3,7 @@ RUN apk add git ca-certificates g++ pkgconf vips vips-dev glib glib-dev
 
 WORKDIR $GOPATH/src/github.com/gin-html-website
 COPY . .
-RUN go build -ldflags '-extldflags "-static"' -o website
+RUN go build -o website
 RUN mkdir requirements \
   && cp -R static requirements/ \
   && cp -R scripts requirements/ \
